@@ -14,7 +14,6 @@ Plataforma SaaS geolocalizada para conectar clientes a técnicos especializados.
 ---
 
 ### 📋 Principais Funcionalidades
-* 📍 **Mapa Interativo:** Busca de técnicos por proximidade.
 * 🔍 **Filtros:** Especialidades (Elétrica, TI, etc.) e avaliações.
 * 💰 **Orçamentos:** Solicitação e acompanhamento de status online.
 * 💎 **Modelo SaaS:** Planos Premium para destaque de técnicos.
