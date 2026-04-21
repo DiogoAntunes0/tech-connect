@@ -109,7 +109,26 @@
     </div>
   </div>
 
-  <script src="Script/script.js"></script>
+ <!-- MODAL TECNICO -->
+<div id="modalTecnico" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+  <div class="bg-white p-6 rounded-xl w-80 relative">
+    
+    <button id="fecharModal" class="absolute top-2 right-2 text-gray-500">
+      ✖
+    </button>
+
+    <h2 id="modalNome" class="text-xl font-bold mb-2"></h2>
+    <p id="modalArea" class="text-green-600"></p>
+    <p id="modalCidade" class="text-gray-500"></p>
+    <p id="modalRating" class="text-yellow-500 mb-4"></p>
+
+    <button class="bg-green-600 text-white w-full py-2 rounded">
+      Entrar em contato
+    </button>
+  </div>
+</div>
+
+  <script src="./script/script.js"></script>
 </body>
 
 </html>
