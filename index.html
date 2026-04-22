@@ -65,51 +65,122 @@
 
   <!-- ================= LOGIN ================= -->
   <div id="login" class="hidden min-h-screen flex justify-center items-center bg-gray-100">
-    <div class="bg-white p-8 rounded-xl shadow w-80">
-      <h2 class="text-xl font-bold mb-4 text-center">Login</h2>
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
 
-      <input id="loginEmail" type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded" />
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+      Bem-vindo de volta 👋
+    </h2>
 
-      <input id="loginSenha" type="password" placeholder="Senha" class="w-full mb-3 px-4 py-2 border rounded" />
-
-      <button id="fazerLogin" class="w-full bg-green-600 text-white py-2 rounded">
-        Entrar
+    <!-- LOGIN SOCIAL -->
+    <div class="flex flex-col gap-3 mb-4">
+      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5">
+        Entrar com Google
       </button>
 
-      <p id="loginErro" class="text-red-500 text-sm hidden mt-2">
-        Dados inválidos
-      </p>
-
-      <button id="voltarLogin" class="mt-4 w-full text-gray-500">
-        ← Voltar
+      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
+        <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="h-5">
+        Entrar com GitHub
       </button>
     </div>
+
+    <!-- DIVISOR -->
+    <div class="flex items-center my-4">
+      <hr class="flex-1 border-gray-300">
+      <span class="px-2 text-gray-400 text-sm">ou</span>
+      <hr class="flex-1 border-gray-300">
+    </div>
+
+    <!-- FORM -->
+    <input id="loginEmail" type="email" placeholder="Email"
+      class="w-full mb-3 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none" />
+
+    <input id="loginSenha" type="password" placeholder="Senha"
+      class="w-full mb-2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none" />
+
+    <!-- ESQUECEU SENHA -->
+    <div class="text-right mb-4">
+      <a href="#" class="text-sm text-green-600 hover:underline">
+        Esqueceu a senha?
+      </a>
+    </div>
+
+    <button id="fazerLogin"
+      class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+      Entrar
+    </button>
+
+    <p id="loginErro" class="text-red-500 text-sm hidden mt-2 text-center">
+      Dados inválidos
+    </p>
+
+    <!-- LEMBRAR -->
+    <div class="flex items-center mt-4">
+      <input type="checkbox" id="rememberMe" class="mr-2">
+      <label for="rememberMe" class="text-sm text-gray-600">
+        Lembrar de mim
+      </label>
+    </div>
+
+    <button id="voltarLogin" class="mt-6 w-full text-gray-500 hover:underline">
+      ← Voltar
+    </button>
+
   </div>
+</div>
 
   <!-- ================= CADASTRO ================= -->
   <div id="cadastro" class="hidden min-h-screen flex justify-center items-center bg-gray-100">
-    <div class="bg-white p-8 rounded-xl shadow w-80">
-      <h2 class="text-xl font-bold mb-4 text-center">Cadastro</h2>
+  <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
 
-      <input id="cadEmail" type="email" placeholder="Email" class="w-full mb-3 px-4 py-2 border rounded" />
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
+      Criar conta 🚀
+    </h2>
 
-      <input id="cadSenha" type="password" placeholder="Senha" class="w-full mb-3 px-4 py-2 border rounded" />
-
-      <button id="fazerCadastro" class="w-full bg-green-600 text-white py-2 rounded">
-        Cadastrar
+    <!-- SOCIAL -->
+    <div class="flex flex-col gap-3 mb-4">
+      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5">
+        Cadastrar com Google
       </button>
 
-      <p id="cadSucesso" class="text-green-600 text-sm hidden mt-2">
-        Cadastro realizado!
-      </p>
-
-      <button id="voltarCadastro" class="mt-4 w-full text-gray-500">
-        ← Voltar
+      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
+        <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="h-5">
+        Cadastrar com GitHub
       </button>
     </div>
-  </div>
 
- <!-- MODAL TECNICO -->
+    <!-- DIVISOR -->
+    <div class="flex items-center my-4">
+      <hr class="flex-1 border-gray-300">
+      <span class="px-2 text-gray-400 text-sm">ou</span>
+      <hr class="flex-1 border-gray-300">
+    </div>
+
+    <!-- FORM -->
+    <input id="cadEmail" type="email" placeholder="Email"
+      class="w-full mb-3 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none" />
+
+    <input id="cadSenha" type="password" placeholder="Senha"
+      class="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 outline-none" />
+
+    <button id="fazerCadastro"
+      class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition">
+      Cadastrar
+    </button>
+
+    <p id="cadSucesso" class="text-green-600 text-sm hidden mt-3 text-center">
+      Cadastro realizado!
+    </p>
+
+    <button id="voltarCadastro" class="mt-6 w-full text-gray-500 hover:underline">
+      ← Voltar
+    </button>
+
+  </div>
+</div>
+
+<!-- MODAL TECNICO -->
 <div id="modalTecnico" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
   <div class="bg-white p-6 rounded-xl w-80 relative">
     
