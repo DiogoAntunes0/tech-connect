@@ -192,6 +192,79 @@
   </div>
 </div>
 
+ <div id="perfil" class="hidden min-h-screen bg-gray-100">
+
+  <!-- TOPO / BANNER -->
+  <div class="bg-gradient-to-r from-green-600 to-green-800 h-40"></div>
+
+  <div class="max-w-3xl mx-auto -mt-20 px-4">
+
+    <div class="bg-white rounded-2xl shadow-xl p-6">
+
+      <!-- VOLTAR -->
+      <button id="voltarPerfil" class="text-gray-500 hover:underline mb-4">
+        ← Voltar
+      </button>
+
+      <!-- HEADER -->
+      <div class="flex items-center gap-6">
+
+        <img id="perfilFoto"
+          class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover" />
+
+        <div>
+          <h2 id="perfilNome" class="text-2xl font-bold text-gray-800"></h2>
+
+          <span id="perfilArea"
+            class="inline-block bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full mt-1">
+          </span>
+
+          <p id="perfilCidade" class="text-gray-500 text-sm mt-1"></p>
+        </div>
+
+      </div>
+
+      <!-- INFO CARDS -->
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+
+        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
+          <p class="text-xs text-gray-500">Idade</p>
+          <p id="perfilIdade" class="font-bold text-lg"></p>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
+          <p class="text-xs text-gray-500">Valor médio</p>
+          <p class="font-bold text-lg text-green-700">
+            R$ <span id="perfilValor"></span>
+          </p>
+        </div>
+
+        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
+          <p class="text-xs text-gray-500">Avaliação</p>
+          <p class="font-bold text-lg text-yellow-500">
+            ⭐ <span id="perfilRating"></span>
+          </p>
+        </div>
+
+      </div>
+
+      <!-- BIO -->
+      <div class="mt-6">
+        <h3 class="font-semibold mb-2 text-gray-800">Sobre</h3>
+        <p id="perfilBio" class="text-gray-600 leading-relaxed"></p>
+      </div>
+
+      <!-- BOTÃO -->
+      <button id="btnChatPerfil"
+        class="mt-6 w-full bg-green-700 hover:bg-green-800 transition text-white py-3 rounded-xl font-semibold shadow-md">
+        Entrar em contato
+      </button>
+
+    </div>
+
+  </div>
+</div>
+
 <!-- MODAL TECNICO -->
 <div id="modalTecnico" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
   <div class="bg-white p-6 rounded-xl w-80 relative">
