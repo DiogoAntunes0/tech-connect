@@ -85,7 +85,7 @@ const tecnicos = [
     valor: 120,
     bio: "Especialista em suporte técnico com foco em empresas.",
     foto: "https://i.pravatar.cc/150?img=1",
-    rating: 5,
+    rating: 4,
   },
   {
     nome: "Mariana Costa",
@@ -95,38 +95,115 @@ const tecnicos = [
     valor: 200,
     bio: "Atuo com redes corporativas e servidores há mais de 10 anos.",
     foto: "https://i.pravatar.cc/150?img=5",
-    rating: 4,
+    rating: 4.5,
+  },
+  {
+    nome: "Bruno Reis",
+    area: "Desenvolvedor Full-Stack",
+    cidade: "Paulista",
+    idade: 48,
+    valor: 500,
+    bio: "Atuo como desenvolvedor Full-Stack há mais de 20 anos.",
+    foto: "https://i.pravatar.cc/150?img=18",
+    rating: 5,
   }
 ];
+
+// FAVORITOS
+function getFavoritos() {
+  return JSON.parse(localStorage.getItem("favoritos")) || [];
+}
+
+function toggleFavorito(nome) {
+  let favs = getFavoritos();
+
+  if (favs.includes(nome)) {
+    favs = favs.filter(f => f !== nome);
+  } else {
+    favs.push(nome);
+  }
+
+  localStorage.setItem("favoritos", JSON.stringify(favs));
+
+  renderTecnicos(document.getElementById("searchInput").value);
+}
 
 const lista = document.getElementById("listaTecnicos");
 
 function renderTecnicos(filtro = "") {
-  lista.innerHTML = "";
 
-  tecnicos
-    .filter((t) => t.area.toLowerCase().includes(filtro.toLowerCase()))
-    .forEach((t) => {
-      lista.innerHTML += `
-        <div class="bg-white border p-4 rounded-xl shadow hover:shadow-lg transition">
-          <h3 
-  onclick="abrirPerfil(${JSON.stringify(t).replace(/"/g, '&quot;')})"
-  class="text-lg font-bold cursor-pointer hover:underline"
->
-  ${t.nome}
-</h3>
-          <p class="text-green-600">${t.area}</p>
-          <p class="text-gray-500">${t.cidade}</p>
-          <p class="text-yellow-500">⭐ ${t.rating}</p>
-          <button onclick="abrirChat(${JSON.stringify(t).replace(/"/g, '&quot;')})"
-          class="mt-3 bg-green-600 text-white px-3 py-1 rounded w-full">
-          Solicitar orçamento
-          </button>
-        </div>
-      `;
-    });
+  // 🔹 Skeleton loading (antes de carregar)
+  lista.innerHTML = `
+    ${[1,2,3,4,5,6].map(() => `
+      <div class="bg-white p-5 rounded-2xl shadow animate-pulse">
+        <div class="h-5 bg-gray-200 rounded w-2/3 mb-3"></div>
+        <div class="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
+        <div class="h-4 bg-gray-200 rounded w-1/3 mb-2"></div>
+        <div class="h-8 bg-gray-200 rounded mt-4"></div>
+      </div>
+    `).join("")}
+  `;
+
+  // 🔹 Simula carregamento
+  setTimeout(() => {
+
+    lista.innerHTML = "";
+
+    tecnicos
+      .filter((t) => t.area.toLowerCase().includes(filtro.toLowerCase()))
+      .forEach((t) => {
+
+        lista.innerHTML += `
+          <div class="bg-white p-5 rounded-2xl shadow hover:shadow-xl transition fade-in group card-hover">
+
+            <div class="flex items-center justify-between mb-3">
+
+  <h3 
+    onclick="abrirPerfil(${JSON.stringify(t).replace(/"/g, '&quot;')})"
+    class="font-bold text-lg cursor-pointer group-hover:text-green-700 transition"
+  >
+    ${t.nome}
+  </h3>
+
+  <div class="flex items-center gap-2">
+
+    <span class="text-yellow-500 text-sm">⭐ ${t.rating}</span>
+
+    <button 
+      onclick="toggleFavorito('${t.nome}')"
+      class="text-lg"
+    >
+      ${getFavoritos().includes(t.nome) ? "❤️" : "🤍"}
+    </button>
+
+  </div>
+
+</div>
+
+            <p class="text-green-600 text-sm">${t.area}</p>
+            <p class="text-gray-500 text-sm mb-3">${t.cidade}</p>
+
+            <div class="flex justify-between items-center mt-4">
+
+              <span class="text-sm text-gray-400">
+                R$ ${t.valor || 100}/h
+              </span>
+
+              <button 
+                onclick="abrirChat(${JSON.stringify(t).replace(/"/g, '&quot;')})"
+                class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-lg text-sm transition"
+              >
+                Contatar
+              </button>
+
+            </div>
+
+          </div>
+        `;
+      });
+
+  }, 600);
 }
-
 document.getElementById("voltarPerfil").onclick = () => {
   showScreen("home");
 };
@@ -148,12 +225,19 @@ function abrirPerfil(tecnico) {
   document.getElementById("perfilFoto").src = tecnico.foto;
 
   showScreen("perfil");
+
+  carregarAvaliacoes();
 }
 
 // BUSCA
 document.getElementById("btnBuscar").onclick = () => {
   const valor = document.getElementById("searchInput").value;
+
   renderTecnicos(valor);
+
+  document.getElementById("listaTecnicos").scrollIntoView({
+    behavior: "smooth"
+  });
 };
 
 // ABRIR MODAL
@@ -261,4 +345,47 @@ function enviarMensagem() {
 
 document.getElementById("btnChatPerfil").onclick = () => {
   abrirChat(tecnicoSelecionado);
+};
+
+// AVALIAÇÕES
+function getAvaliacoes(nome) {
+  return JSON.parse(localStorage.getItem("avaliacoes_" + nome)) || [];
+}
+
+function salvarAvaliacao(nome, nota, comentario) {
+  const lista = getAvaliacoes(nome);
+
+  lista.push({ nota, comentario });
+
+  localStorage.setItem("avaliacoes_" + nome, JSON.stringify(lista));
+}
+
+function carregarAvaliacoes() {
+  const container = document.getElementById("listaAvaliacoes");
+
+  container.innerHTML = "";
+
+  const avals = getAvaliacoes(tecnicoSelecionado.nome);
+
+  avals.forEach(a => {
+    container.innerHTML += `
+      <div class="bg-gray-100 p-3 rounded-lg text-sm">
+        <p class="text-yellow-500">⭐ ${a.nota}</p>
+        <p class="text-gray-700">${a.comentario}</p>
+      </div>
+    `;
+  });
+}
+
+document.getElementById("btnAvaliar").onclick = () => {
+  const nota = document.getElementById("notaInput").value;
+  const comentario = document.getElementById("comentarioInput").value;
+
+  if (!comentario) return;
+
+  salvarAvaliacao(tecnicoSelecionado.nome, nota, comentario);
+
+  document.getElementById("comentarioInput").value = "";
+
+  carregarAvaliacoes();
 };
