@@ -3,6 +3,7 @@ const screens = {
   home: document.getElementById("home"),
   login: document.getElementById("login"),
   cadastro: document.getElementById("cadastro"),
+  perfil: document.getElementById("perfil"),
 };
 
 function showScreen(screen) {
@@ -80,32 +81,22 @@ const tecnicos = [
     nome: "Lucas Andrade",
     area: "Suporte Técnico",
     cidade: "São Paulo",
+    idade: 28,
+    valor: 120,
+    bio: "Especialista em suporte técnico com foco em empresas.",
+    foto: "https://i.pravatar.cc/150?img=1",
     rating: 5,
   },
   {
     nome: "Mariana Costa",
     area: "Redes e Infraestrutura",
     cidade: "Osasco",
+    idade: 32,
+    valor: 200,
+    bio: "Atuo com redes corporativas e servidores há mais de 10 anos.",
+    foto: "https://i.pravatar.cc/150?img=5",
     rating: 4,
-  },
-  {
-    nome: "Rafael Lima",
-    area: "Desenvolvedor Web",
-    cidade: "Barueri",
-    rating: 5,
-  },
-  {
-    nome: "Fernanda Rocha",
-    area: "Segurança da Informação",
-    cidade: "São Paulo",
-    rating: 5,
-  },
-  {
-    nome: "Carlos Mendes",
-    area: "Cloud e DevOps",
-    cidade: "Guarulhos",
-    rating: 4,
-  },
+  }
 ];
 
 const lista = document.getElementById("listaTecnicos");
@@ -118,7 +109,12 @@ function renderTecnicos(filtro = "") {
     .forEach((t) => {
       lista.innerHTML += `
         <div class="bg-white border p-4 rounded-xl shadow hover:shadow-lg transition">
-          <h3 class="text-lg font-bold">${t.nome}</h3>
+          <h3 
+  onclick="abrirPerfil(${JSON.stringify(t).replace(/"/g, '&quot;')})"
+  class="text-lg font-bold cursor-pointer hover:underline"
+>
+  ${t.nome}
+</h3>
           <p class="text-green-600">${t.area}</p>
           <p class="text-gray-500">${t.cidade}</p>
           <p class="text-yellow-500">⭐ ${t.rating}</p>
@@ -131,7 +127,28 @@ function renderTecnicos(filtro = "") {
     });
 }
 
+document.getElementById("voltarPerfil").onclick = () => {
+  showScreen("home");
+};
+
 renderTecnicos();
+
+let tecnicoSelecionado = null;
+
+function abrirPerfil(tecnico) {
+  tecnicoSelecionado = tecnico;
+
+  document.getElementById("perfilNome").innerText = tecnico.nome;
+  document.getElementById("perfilArea").innerText = tecnico.area;
+  document.getElementById("perfilCidade").innerText = tecnico.cidade;
+  document.getElementById("perfilIdade").innerText = tecnico.idade;
+  document.getElementById("perfilValor").innerText = tecnico.valor;
+  document.getElementById("perfilRating").innerText = tecnico.rating;
+  document.getElementById("perfilBio").innerText = tecnico.bio;
+  document.getElementById("perfilFoto").src = tecnico.foto;
+
+  showScreen("perfil");
+}
 
 // BUSCA
 document.getElementById("btnBuscar").onclick = () => {
@@ -162,17 +179,22 @@ function abrirChat(tecnico) {
   document.getElementById("chatNome").innerText = tecnico.nome;
   document.getElementById("chatArea").innerText = tecnico.area;
 
-  document.getElementById("chatBox").classList.remove("hidden");
+  const chat = document.getElementById("chatBox");
+
+  chat.classList.remove("hidden");
+  chat.classList.remove("translate-x-full"); // IMPORTANTE
 
   carregarMensagens();
 }
 
 function fecharChat() {
-  document.getElementById("chatBox").classList.add("hidden");
-}
+  const chat = document.getElementById("chatBox");
 
-function fecharChat() {
-  document.getElementById("chatBox").classList.add("translate-x-full");
+  chat.classList.add("translate-x-full");
+
+  setTimeout(() => {
+    chat.classList.add("hidden");
+  }, 200);
 }
 
 // SALVAR / PEGAR MENSAGENS
@@ -236,3 +258,7 @@ function enviarMensagem() {
   input.value = "";
   carregarMensagens();
 }
+
+document.getElementById("btnChatPerfil").onclick = () => {
+  abrirChat(tecnicoSelecionado);
+};
