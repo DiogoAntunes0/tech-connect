@@ -1,4 +1,4 @@
-// TELAS
+// TELAS feito
 const screens = {
   home: document.getElementById("home"),
   login: document.getElementById("login"),
@@ -109,7 +109,7 @@ const tecnicos = [
   }
 ];
 
-// FAVORITOS
+// FAVORITOS feito
 function getFavoritos() {
   return JSON.parse(localStorage.getItem("favoritos")) || [];
 }
