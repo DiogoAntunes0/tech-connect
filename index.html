@@ -12,68 +12,128 @@
 <body class="bg-white">
   <!-- ================= HOME ================= -->
   <div id="home">
-    <header class="bg-white border-b shadow-sm">
-      <nav class="container mx-auto flex justify-between items-center p-4">
-        <div class="flex items-center">
-          <img src="./assets/techlogo.png" alt="TechConnect" class="h-20" />
-        </div>
-        <div id="navButtons" class="flex gap-4">
-          <button id="btnLogin" class="bg-green-600 text-white px-4 py-2 rounded-lg">
-            Entrar
+
+  <!-- HEADER (mantido, só refinado visualmente) -->
+  <header class="bg-white border-b shadow-sm">
+    <nav class="container mx-auto flex justify-between items-center p-4">
+      <div class="flex items-center gap-2">
+        <img src="./assets/techlogo.png" alt="TechConnect" class="h-16" />
+      </div>
+
+      <div id="navButtons" class="flex gap-3">
+        <button id="btnLogin"
+          class="bg-green-600 hover:bg-green-700 transition text-white px-5 py-2 rounded-xl shadow">
+          Entrar
+        </button>
+
+        <button id="btnCadastro"
+          class="border border-green-600 px-5 py-2 rounded-xl text-green-600 hover:bg-green-50 transition">
+          Cadastrar
+        </button>
+      </div>
+
+      <div id="userArea" class="hidden flex gap-4 items-center">
+        <span id="userEmail"></span>
+        <button id="btnLogout" class="bg-red-500 text-white px-3 py-1 rounded">
+          Sair
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO NOVO -->
+  <section class="bg-gradient-to-r from-green-600 to-green-800 text-white">
+
+    <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
+
+      <!-- TEXTO -->
+      <div>
+        <h1 class="text-5xl font-bold leading-tight mb-6">
+          Conectando você aos melhores profissionais de TI
+        </h1>
+
+        <p class="text-green-100 text-lg mb-8">
+          Suporte técnico, redes, servidores e desenvolvimento — tudo em um só lugar.
+        </p>
+
+        <!-- BUSCA -->
+        <div class="flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden shadow-xl w-full max-w-md">
+
+          <input 
+            id="searchInput"
+            placeholder="Ex: redes, suporte, dev..."
+            class="flex-1 px-5 py-4 text-gray-700 outline-none"
+          />
+
+          <button 
+            id="btnBuscar"
+            class="bg-green-700 hover:bg-green-800 transition px-6 py-4 font-semibold">
+            Buscar
           </button>
-          <button id="btnCadastro" class="border border-green-600 px-4 py-2 rounded-lg text-green-600">
-            Cadastrar
-          </button>
+
+        </div>
+      </div>
+
+      <!-- VISUAL DIREITA -->
+      <div class="hidden md:flex justify-center">
+
+        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-xl w-72">
+
+          <p class="text-sm mb-2 text-green-200">Profissional em destaque</p>
+
+          <div class="bg-white text-gray-800 p-4 rounded-xl shadow">
+            <h3 class="font-bold">Especialista em Redes</h3>
+            <p class="text-sm text-gray-500">São Paulo</p>
+            <p class="text-yellow-500 mt-2">⭐ 5.0</p>
+          </div>
+
         </div>
 
-        <div id="userArea" class="hidden flex gap-4 items-center">
-          <span id="userEmail"></span>
-          <button id="btnLogout" class="bg-red-500 text-white px-3 py-1 rounded">
-            Sair
-          </button>
-        </div>
-      </nav>
-    </header>
-
-    <!-- HERO -->
-    <section class="text-center py-28 bg-gradient-to-r from-green-600 to-green-800 text-white">
-  <h2 class="text-5xl font-bold mb-4 tracking-tight">
-    Encontre especialistas em TI perto de você
-  </h2>
-
-  <p class="text-green-100 mb-10 text-lg">
-    Suporte técnico, redes, servidores e desenvolvimento
-  </p>
-
-  <div class="flex justify-center">
-    <div class="flex items-center bg-white shadow-2xl rounded-2xl overflow-hidden border border-gray-100">
-      
-      <input 
-        id="searchInput"
-        placeholder="Buscar por área de TI (ex: redes, suporte...)"
-        class="px-5 py-4 w-80 outline-none text-gray-700 placeholder-gray-400"
-      />
-
-      <button 
-        id="btnBuscar"
-        class="bg-green-700 hover:bg-green-800 transition text-white px-6 py-4 font-semibold"
-      >
-        Buscar
-      </button>
+      </div>
 
     </div>
-  </div>
-</section>
+  </section>
 
-    <!-- LISTA -->
-    <section class="container mx-auto py-16 px-4">
-      <h2 class="text-2xl font-bold mb-8 text-gray-800">
-        Especialistas em TI disponíveis
+  <!-- BENEFÍCIOS -->
+  <section class="bg-gray-50 py-14">
+    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-6 text-center">
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">Profissionais verificados</h3>
+        <p class="text-gray-500 text-sm">Especialistas qualificados perto de você</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">Atendimento rápido</h3>
+        <p class="text-gray-500 text-sm">Conecte-se e resolva seu problema rápido</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
+        <h3 class="font-bold text-lg mb-2">Orçamentos transparentes</h3>
+        <p class="text-gray-500 text-sm">Sem surpresas no valor final</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LISTA -->
+  <section class="container mx-auto py-16 px-6">
+
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-800">
+        Especialistas disponíveis
       </h2>
 
-      <div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
-    </section>
-  </div>
+      <span class="text-sm text-gray-400">
+        Resultados em tempo real
+      </span>
+    </div>
+
+    <div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
+
+  </section>
+
+</div>
 
   <!-- ================= LOGIN ================= -->
   <div id="login" class="hidden min-h-screen flex justify-center items-center bg-gray-100">
@@ -192,75 +252,64 @@
   </div>
 </div>
 
- <div id="perfil" class="hidden min-h-screen bg-gray-100">
+  <!-- ================= PERFIL TECNICO ================= -->
+<div id="perfil" class="hidden min-h-screen bg-gray-100 p-6">
+  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
 
-  <!-- TOPO / BANNER -->
-  <div class="bg-gradient-to-r from-green-600 to-green-800 h-40"></div>
+    <button id="voltarPerfil" class="mb-4 text-gray-500 hover:underline">
+      ← Voltar
+    </button>
 
-  <div class="max-w-3xl mx-auto -mt-20 px-4">
+    <div class="flex items-center gap-6">
+      <img id="perfilFoto" class="w-28 h-28 rounded-full object-cover border" />
 
-    <div class="bg-white rounded-2xl shadow-xl p-6">
-
-      <!-- VOLTAR -->
-      <button id="voltarPerfil" class="text-gray-500 hover:underline mb-4">
-        ← Voltar
-      </button>
-
-      <!-- HEADER -->
-      <div class="flex items-center gap-6">
-
-        <img id="perfilFoto"
-          class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover" />
-
-        <div>
-          <h2 id="perfilNome" class="text-2xl font-bold text-gray-800"></h2>
-
-          <span id="perfilArea"
-            class="inline-block bg-green-100 text-green-700 text-xs px-3 py-1 rounded-full mt-1">
-          </span>
-
-          <p id="perfilCidade" class="text-gray-500 text-sm mt-1"></p>
-        </div>
-
+      <div>
+        <h2 id="perfilNome" class="text-2xl font-bold"></h2>
+        <p id="perfilArea" class="text-green-600"></p>
+        <p id="perfilCidade" class="text-gray-500"></p>
       </div>
-
-      <!-- INFO CARDS -->
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
-
-        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
-          <p class="text-xs text-gray-500">Idade</p>
-          <p id="perfilIdade" class="font-bold text-lg"></p>
-        </div>
-
-        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
-          <p class="text-xs text-gray-500">Valor médio</p>
-          <p class="font-bold text-lg text-green-700">
-            R$ <span id="perfilValor"></span>
-          </p>
-        </div>
-
-        <div class="bg-gray-50 p-4 rounded-xl text-center shadow-sm">
-          <p class="text-xs text-gray-500">Avaliação</p>
-          <p class="font-bold text-lg text-yellow-500">
-            ⭐ <span id="perfilRating"></span>
-          </p>
-        </div>
-
-      </div>
-
-      <!-- BIO -->
-      <div class="mt-6">
-        <h3 class="font-semibold mb-2 text-gray-800">Sobre</h3>
-        <p id="perfilBio" class="text-gray-600 leading-relaxed"></p>
-      </div>
-
-      <!-- BOTÃO -->
-      <button id="btnChatPerfil"
-        class="mt-6 w-full bg-green-700 hover:bg-green-800 transition text-white py-3 rounded-xl font-semibold shadow-md">
-        Entrar em contato
-      </button>
-
     </div>
+
+    <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
+      <p><strong>Idade:</strong> <span id="perfilIdade"></span></p>
+      <p><strong>Valor médio:</strong> R$ <span id="perfilValor"></span></p>
+      <p><strong>Avaliação:</strong> ⭐ <span id="perfilRating"></span></p>
+    </div>
+
+    <div class="mt-6">
+      <h3 class="font-semibold mb-2">Sobre</h3>
+      <div class="mt-6">
+  <h3 class="font-semibold mb-2">Avaliar profissional</h3>
+
+  <select id="notaInput" class="border rounded px-2 py-1 mb-2">
+    <option value="5">⭐ 5</option>
+    <option value="4">⭐ 4</option>
+    <option value="3">⭐ 3</option>
+    <option value="2">⭐ 2</option>
+    <option value="1">⭐ 1</option>
+  </select>
+
+  <textarea 
+    id="comentarioInput"
+    placeholder="Escreva um comentário..."
+    class="w-full border rounded p-2 text-sm mb-2"
+  ></textarea>
+
+  <button 
+    id="btnAvaliar"
+    class="bg-green-700 text-white px-4 py-2 rounded-lg">
+    Enviar avaliação
+  </button>
+</div>
+
+<div id="listaAvaliacoes" class="mt-4 space-y-2"></div>
+      <p id="perfilBio" class="text-gray-600"></p>
+    </div>
+
+    <button id="btnChatPerfil"
+      class="mt-6 w-full bg-green-700 text-white py-2 rounded-lg">
+      Entrar em contato
+    </button>
 
   </div>
 </div>

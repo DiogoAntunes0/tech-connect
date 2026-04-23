@@ -17,3 +17,13 @@
 #chatBox {
     transition: all 0.2s ease;
 }
+
+/* animação de entrada */
+.fade-in {
+    animation: fadeIn 0.4s ease;
+}
+
+/* efeito subir no hover */
+.card-hover:hover {
+    transform: translateY(-6px);
+}
