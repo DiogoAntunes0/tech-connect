@@ -17,7 +17,7 @@
   <header class="bg-white border-b shadow-sm">
     <nav class="container mx-auto flex justify-between items-center p-4">
       <div class="flex items-center gap-2">
-        <img src="./assets/techlogo.png" alt="TechConnect" class="h-16" />
+        <img src="../assets/techlogo.png" alt="TechConnect" class="h-16" />
       </div>
 
       <div id="navButtons" class="flex gap-3">
@@ -253,65 +253,173 @@
 </div>
 
   <!-- ================= PERFIL TECNICO ================= -->
-<div id="perfil" class="hidden min-h-screen bg-gray-100 p-6">
-  <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg p-6">
+<!-- PAINEL PERFIL MODERNO -->
+<div 
+id="perfilDrawer"
+class="fixed inset-0 bg-black/40 hidden z-50">
 
-    <button id="voltarPerfil" class="mb-4 text-gray-500 hover:underline">
-      ← Voltar
-    </button>
-
-    <div class="flex items-center gap-6">
-      <img id="perfilFoto" class="w-28 h-28 rounded-full object-cover border" />
-
-      <div>
-        <h2 id="perfilNome" class="text-2xl font-bold"></h2>
-        <p id="perfilArea" class="text-green-600"></p>
-        <p id="perfilCidade" class="text-gray-500"></p>
-      </div>
-    </div>
-
-    <div class="mt-6 grid grid-cols-2 gap-4 text-sm">
-      <p><strong>Idade:</strong> <span id="perfilIdade"></span></p>
-      <p><strong>Valor médio:</strong> R$ <span id="perfilValor"></span></p>
-      <p><strong>Avaliação:</strong> ⭐ <span id="perfilRating"></span></p>
-    </div>
-
-    <div class="mt-6">
-      <h3 class="font-semibold mb-2">Sobre</h3>
-      <div class="mt-6">
-  <h3 class="font-semibold mb-2">Avaliar profissional</h3>
-
-  <select id="notaInput" class="border rounded px-2 py-1 mb-2">
-    <option value="5">⭐ 5</option>
-    <option value="4">⭐ 4</option>
-    <option value="3">⭐ 3</option>
-    <option value="2">⭐ 2</option>
-    <option value="1">⭐ 1</option>
-  </select>
-
-  <textarea 
-    id="comentarioInput"
-    placeholder="Escreva um comentário..."
-    class="w-full border rounded p-2 text-sm mb-2"
-  ></textarea>
-
-  <button 
-    id="btnAvaliar"
-    class="bg-green-700 text-white px-4 py-2 rounded-lg">
-    Enviar avaliação
-  </button>
+<!-- Overlay -->
+<div onclick="fecharPerfil()"
+class="absolute inset-0">
 </div>
 
-<div id="listaAvaliacoes" class="mt-4 space-y-2"></div>
-      <p id="perfilBio" class="text-gray-600"></p>
-    </div>
+<!-- Drawer -->
+<div id="drawerBox"
+class="absolute right-0 top-0 h-full w-full md:w-[480px] bg-white shadow-2xl 
+translate-x-full transition-transform duration-500 overflow-y-auto">
 
-    <button id="btnChatPerfil"
-      class="mt-6 w-full bg-green-700 text-white py-2 rounded-lg">
-      Entrar em contato
-    </button>
+<!-- topo -->
+<div class="bg-gradient-to-r from-green-600 to-green-800 p-8 text-white relative">
 
-  </div>
+<button
+onclick="fecharPerfil()"
+class="absolute top-5 right-5 bg-white/20 px-3 py-2 rounded-xl">
+✕
+</button>
+
+<div class="flex items-center gap-5">
+
+<img 
+id="perfilFoto"
+class="w-24 h-24 rounded-3xl border-4 border-white shadow-lg object-cover"
+/>
+
+<div>
+<h2 id="perfilNome" class="text-3xl font-bold"></h2>
+
+<p id="perfilArea" class="opacity-90"></p>
+
+<p id="perfilCidade" class="text-green-100"></p>
+
+<div class="mt-3 flex gap-2 flex-wrap">
+<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+⭐ <span id="perfilRating"></span>
+</span>
+
+<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+R$ <span id="perfilValor"></span>/h
+</span>
+
+<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+<span id="perfilIdade"></span> anos
+</span>
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- conteúdo -->
+<div class="p-6 space-y-6">
+
+<!-- cards métricas -->
+<div class="grid grid-cols-3 gap-4">
+
+<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
+<p class="text-xl font-bold text-green-700">96%</p>
+<p class="text-xs text-gray-500">Sucesso</p>
+</div>
+
+<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
+<p class="text-xl font-bold text-green-700">42</p>
+<p class="text-xs text-gray-500">Projetos</p>
+</div>
+
+<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
+<p class="text-xl font-bold text-green-700">1h</p>
+<p class="text-xs text-gray-500">Resposta</p>
+</div>
+
+</div>
+
+
+<!-- sobre -->
+<div>
+<h3 class="font-bold text-lg mb-3">
+Sobre o profissional
+</h3>
+
+<p id="perfilBio"
+class="text-gray-600 leading-relaxed">
+</p>
+</div>
+
+
+<!-- skills -->
+<div>
+<h3 class="font-bold text-lg mb-3">
+Especialidades
+</h3>
+
+<div class="flex flex-wrap gap-2">
+<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+Suporte
+</span>
+
+<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+Infraestrutura
+</span>
+
+<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+Windows
+</span>
+
+<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+Redes
+</span>
+</div>
+
+</div>
+
+
+<!-- avaliações -->
+<div>
+
+<h3 class="font-bold text-lg mb-3">
+Avaliar profissional
+</h3>
+
+<select id="notaInput"
+class="border rounded-xl px-4 py-2 mb-3 w-full">
+<option value="5">⭐ 5 estrelas</option>
+<option value="4">⭐ 4 estrelas</option>
+<option value="3">⭐ 3 estrelas</option>
+<option value="2">⭐ 2 estrelas</option>
+<option value="1">⭐ 1 estrela</option>
+</select>
+
+
+<textarea
+id="comentarioInput"
+placeholder="Escreva sua avaliação..."
+class="w-full border rounded-2xl p-4 mb-3">
+</textarea>
+
+<button
+id="btnAvaliar"
+class="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-2xl">
+Enviar avaliação
+</button>
+
+<div id="listaAvaliacoes"
+class="mt-5 space-y-3">
+</div>
+
+</div>
+
+
+<!-- CTA -->
+<button
+id="btnChatPerfil"
+class="w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl text-lg shadow-lg">
+Entrar em contato
+</button>
+
+
+</div>
+</div>
 </div>
 
 <!-- MODAL TECNICO -->
@@ -334,37 +442,80 @@
 </div>
 
   <!-- CHAT -->
-<!-- CHAT MODERNO -->
-<div id="chatBox" class="fixed bottom-6 right-6 w-80 h-[450px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden hidden z-50 animate-[fadeIn_.2s_ease]">
+<div id="chatBox"
+class="fixed bottom-6 right-6 w-[380px] h-[560px]
+bg-white rounded-3xl shadow-2xl overflow-hidden
+hidden z-50 border border-gray-200
+flex flex-col translate-x-full transition-all duration-300">
 
-  <!-- HEADER -->
-  <div class="bg-green-700 text-white p-3 flex justify-between items-center">
-    <span class="text-green-300 text-xs">● online</span>
-    <div>
-      <h3 id="chatNome" class="font-semibold text-sm"></h3>
-      <p id="chatArea" class="text-xs opacity-80"></p>
-    </div>
-    <button onclick="fecharChat()">✖</button>
-  </div>
+<!-- HEADER -->
+<div class="bg-gradient-to-r from-green-600 to-green-800 text-white p-4">
 
-  <!-- MENSAGENS -->
-  <div id="chatMensagens" class="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50">
-  </div>
+<div class="flex justify-between items-center">
 
-  <!-- INPUT -->
-  <div class="p-2 border-t flex gap-2">
-    <input 
-      id="chatInput"
-      placeholder="Mensagem..."
-      class="flex-1 border rounded-lg px-2 py-1 text-sm outline-none"
-    />
-    <button 
-      onclick="enviarMensagem()"
-      class="bg-green-700 text-white px-3 rounded-lg text-sm"
-    >
-      ➤
-    </button>
-  </div>
+<div class="flex items-center gap-3">
+
+<img id="chatAvatar"
+src=""
+class="w-12 h-12 rounded-full border-2 border-white object-cover">
+
+<div>
+<h3 id="chatNome" class="font-bold"></h3>
+
+<p id="chatArea" class="text-xs text-green-100"></p>
+
+<p class="text-[11px] text-green-200">
+● Online agora
+</p>
+</div>
+
+</div>
+
+<button 
+onclick="fecharChat()"
+class="bg-white/20 px-3 py-2 rounded-xl">
+✕
+</button>
+
+</div>
+
+</div>
+
+
+<!-- mensagens -->
+<div id="chatMensagens"
+class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3">
+</div>
+
+<!-- digitando -->
+<div id="digitando"
+class="hidden px-4 pb-2 text-xs text-gray-400">
+Técnico está digitando...
+</div>
+
+<!-- INPUT -->
+<div class="border-t p-3 bg-white">
+
+<div class="flex items-center gap-2">
+
+<input
+id="chatInput"
+placeholder="Digite sua mensagem..."
+class="flex-1 bg-gray-100 rounded-full px-5 py-3
+outline-none focus:ring-2 focus:ring-green-500"
+/>
+
+<button
+onclick="enviarMensagem()"
+class="w-12 h-12 rounded-full
+bg-green-700 hover:bg-green-800
+text-white shadow-lg">
+➤
+</button>
+
+</div>
+
+</div>
 
 </div>
 

@@ -128,29 +128,56 @@ function renderTecnicos(filtro = "") {
 
     }, 600);
 }
-document.getElementById("voltarPerfil").onclick = () => {
-    showScreen("home");
-};
 
 renderTecnicos();
 
 let tecnicoSelecionado = null;
 
-function abrirPerfil(tecnico) {
-    tecnicoSelecionado = tecnico;
+function abrirPerfil(tecnico){
 
-    document.getElementById("perfilNome").innerText = tecnico.nome;
-    document.getElementById("perfilArea").innerText = tecnico.area;
-    document.getElementById("perfilCidade").innerText = tecnico.cidade;
-    document.getElementById("perfilIdade").innerText = tecnico.idade;
-    document.getElementById("perfilValor").innerText = tecnico.valor;
-    document.getElementById("perfilRating").innerText = tecnico.rating;
-    document.getElementById("perfilBio").innerText = tecnico.bio;
-    document.getElementById("perfilFoto").src = tecnico.foto;
+tecnicoSelecionado = tecnico;
 
-    showScreen("perfil");
+document.getElementById("perfilNome").innerText = tecnico.nome;
+document.getElementById("perfilArea").innerText = tecnico.area;
+document.getElementById("perfilCidade").innerText = tecnico.cidade;
 
-    carregarAvaliacoes();
+document.getElementById("perfilIdade").innerText = tecnico.idade;
+document.getElementById("perfilValor").innerText = tecnico.valor;
+document.getElementById("perfilRating").innerText = tecnico.rating;
+
+document.getElementById("perfilBio").innerText = tecnico.bio;
+
+document.getElementById("perfilFoto").src = tecnico.foto;
+
+
+/* abre drawer */
+document
+.getElementById("perfilDrawer")
+.classList.remove("hidden");
+
+
+setTimeout(()=>{
+document
+.getElementById("drawerBox")
+.classList.remove("translate-x-full");
+},50);
+
+carregarAvaliacoes();
+}
+
+function fecharPerfil(){
+
+document
+.getElementById("drawerBox")
+.classList.add("translate-x-full");
+
+
+setTimeout(()=>{
+document
+.getElementById("perfilDrawer")
+.classList.add("hidden");
+},400);
+
 }
 
 // BUSCA

@@ -4,92 +4,219 @@ window.enviarMensagem = enviarMensagem;
 
 let chatAtual = null;
 
-function abrirChat(tecnico) {
-    chatAtual = tecnico;
 
-    document.getElementById("chatNome").innerText = tecnico.nome;
-    document.getElementById("chatArea").innerText = tecnico.area;
+// abrir
+function abrirChat(tecnico){
 
-    const chat = document.getElementById("chatBox");
+chatAtual = tecnico;
 
-    chat.classList.remove("hidden");
-    chat.classList.remove("translate-x-full"); // IMPORTANTE
+document.getElementById("chatNome").innerText = tecnico.nome;
+document.getElementById("chatArea").innerText = tecnico.area;
 
-    carregarMensagens();
+document.getElementById("chatAvatar").src =
+tecnico.foto;
+
+const chat = document.getElementById("chatBox");
+
+chat.classList.remove("hidden");
+
+setTimeout(()=>{
+chat.classList.remove("translate-x-full");
+},50);
+
+carregarMensagens();
+
 }
 
-function fecharChat() {
-    const chat = document.getElementById("chatBox");
 
-    chat.classList.add("translate-x-full");
+// fechar
+function fecharChat(){
 
-    setTimeout(() => {
-        chat.classList.add("hidden");
-    }, 200);
+const chat = document.getElementById("chatBox");
+
+chat.classList.add("translate-x-full");
+
+setTimeout(()=>{
+chat.classList.add("hidden");
+},300);
+
 }
 
-// SALVAR / PEGAR MENSAGENS
-function getMensagens() {
-    return JSON.parse(localStorage.getItem("chat_" + chatAtual.nome)) || [];
+
+
+// storage
+function getMensagens(){
+return JSON.parse(
+localStorage.getItem(
+"chat_"+chatAtual.nome
+)
+)||[];
 }
 
-function salvarMensagens(msgs) {
-    localStorage.setItem("chat_" + chatAtual.nome, JSON.stringify(msgs));
+function salvarMensagens(msgs){
+
+localStorage.setItem(
+"chat_"+chatAtual.nome,
+JSON.stringify(msgs)
+);
+
 }
 
-// RENDER
-function carregarMensagens() {
-    const container = document.getElementById("chatMensagens");
-    container.innerHTML = "";
 
-    const msgs = getMensagens();
 
-    msgs.forEach((m) => {
-        container.innerHTML += `
-    <div class="flex ${m.eu ? "justify-end" : "justify-start"}">
-    <div class="${m.eu
-                ? "bg-green-600 text-white rounded-br-none"
-                : "bg-gray-200 rounded-bl-none"} 
-        px-3 py-2 rounded-2xl max-w-[70%] text-sm shadow">
-        ${m.texto}
-    </div>
-    </div>
+// render
+function carregarMensagens(){
+
+const container =
+document.getElementById(
+"chatMensagens"
+);
+
+container.innerHTML="";
+
+const msgs = getMensagens();
+
+msgs.forEach(m=>{
+
+container.innerHTML += `
+
+<div class="flex ${
+m.eu ?
+'justify-end'
+:
+'justify-start'
+}">
+
+<div class="
+${m.eu
+?
+'bg-green-600 text-white rounded-br-md'
+:
+'bg-white border rounded-bl-md'
+}
+
+max-w-[75%]
+px-4 py-3
+rounded-2xl
+shadow-sm">
+
+<p class="text-sm">
+${m.texto}
+</p>
+
+<p class="text-[10px] mt-1 opacity-70">
+${m.hora}
+</p>
+
+</div>
+
+</div>
+
 `;
-    });
 
-    container.scrollTop = container.scrollHeight;
+});
+
+container.scrollTop=
+container.scrollHeight;
+
 }
 
-// ENVIAR
-function enviarMensagem() {
-    const input = document.getElementById("chatInput");
-    const texto = input.value.trim();
 
-    if (!texto) return;
 
-    const msgs = getMensagens();
+// enviar
+function enviarMensagem(){
 
-    msgs.push({
-        texto,
-        eu: true
-    });
+const input =
+document.getElementById(
+"chatInput"
+);
 
-    // resposta fake do técnico
-    setTimeout(() => {
-        msgs.push({
-            texto: "Olá! Recebi sua mensagem 👍",
-            eu: false
-        });
+const texto =
+input.value.trim();
 
-        salvarMensagens(msgs);
-        carregarMensagens();
-    }, 800);
+if(!texto) return;
 
-    salvarMensagens(msgs);
-    input.value = "";
-    carregarMensagens();
+const msgs =
+getMensagens();
+
+
+msgs.push({
+texto,
+eu:true,
+hora:new Date()
+.toLocaleTimeString([],{
+hour:'2-digit',
+minute:'2-digit'
+})
+});
+
+
+salvarMensagens(msgs);
+
+input.value="";
+
+carregarMensagens();
+
+
+// digitando fake
+document
+.getElementById("digitando")
+.classList.remove("hidden");
+
+
+setTimeout(()=>{
+
+document
+.getElementById("digitando")
+.classList.add("hidden");
+
+
+msgs.push({
+
+texto:"Olá! Recebi sua mensagem 👍 Como posso ajudar?",
+
+eu:false,
+
+hora:new Date()
+.toLocaleTimeString([],{
+hour:'2-digit',
+minute:'2-digit'
+})
+
+});
+
+
+salvarMensagens(msgs);
+
+carregarMensagens();
+
+},1500);
+
 }
 
-document.getElementById("btnChatPerfil").onclick = () => {
-    abrirChat(tecnicoSelecionado);
+
+
+// enter envia
+document
+.getElementById("chatInput")
+.addEventListener(
+"keypress",
+function(e){
+
+if(e.key==="Enter"){
+enviarMensagem();
+}
+
+}
+);
+
+
+document
+.getElementById("btnChatPerfil")
+.onclick = ()=>{
+
+abrirChat(
+tecnicoSelecionado
+);
+
 };
