@@ -8,7 +8,7 @@ cidade:"São Paulo",
 idade:28,
 valor:120,
 bio:"Especialista em suporte técnico com foco em empresas.",
-foto:"https://i.pravatar.cc/150?img=1",
+foto:"https://i.pravatar.cc/150?img=67",
 rating:4
 },
 
