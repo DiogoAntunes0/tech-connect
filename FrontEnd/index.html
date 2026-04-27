@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechConnect</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-50">
+
+  <!-- ================= HOME ================= -->
+  <div id="home">
+
+    <header class="bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm sticky top-0 z-50">
+      <nav class="container mx-auto flex justify-between items-center p-5">
+
+        <div class="flex items-center gap-3">
+          <span class="text-xl font-bold text-slate-800">TechConnect</span>
+        </div>
+
+        <div id="navButtons" class="flex gap-4">
+          <button id="btnLogin"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-2xl shadow-lg transition">
+            Entrar
+          </button>
+
+          <button id="btnCadastro"
+            class="border border-slate-300 px-5 py-2 rounded-2xl text-slate-700 hover:bg-slate-100 transition">
+            Cadastrar
+          </button>
+        </div>
+
+        <div id="userArea" class="hidden flex gap-4 items-center">
+
+          <button id="btnMeuPerfil"
+            class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-2 rounded-2xl shadow hover:bg-slate-50 transition">
+
+            <div class="w-10 h-10 relative">
+
+  <img id="userAvatarImg"
+  class="w-10 h-10 rounded-full object-cover hidden">
+
+  <div id="userAvatar"
+  class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+  U
+  </div>
+
+</div>
+
+            <div class="text-left">
+              <p class="text-xs text-slate-400">Olá,</p>
+              <p id="userEmail" class="font-semibold text-slate-800"></p>
+            </div>
+
+          </button>
+
+          <button id="btnLogout" class="bg-red-500 text-white px-4 py-2 rounded-xl">
+            Sair
+          </button>
+
+        </div>
+
+      </nav>
+    </header>
+
+
+    <section class="bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-white relative overflow-hidden">
+
+      <div class="absolute -top-20 -left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"></div>
+      <div class="absolute top-40 right-20 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl"></div>
+
+      <div class="container mx-auto px-6 py-28 grid md:grid-cols-2 gap-12 items-center">
+
+        <div>
+          <span class="bg-white/10 border border-white/20 px-5 py-2 rounded-full text-sm">
+            Marketplace para profissionais de TI
+          </span>
+
+          <h1 class="text-6xl font-bold leading-tight mt-8 mb-6">
+            Conectando você aos melhores profissionais de TI
+          </h1>
+
+          <p class="text-slate-300 text-lg mb-10">
+            Suporte técnico, cloud, redes e desenvolvimento em um só lugar.
+          </p>
+
+          <div class="flex flex-col sm:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-xl">
+
+            <input id="searchInput" placeholder="Ex: redes, suporte, dev..."
+              class="flex-1 px-6 py-5 text-slate-700 outline-none" />
+
+            <button id="btnBuscar" class="bg-indigo-600 hover:bg-indigo-700 px-8 py-5 font-semibold transition">
+              Buscar
+            </button>
+
+          </div>
+
+          <div class="flex gap-10 mt-10">
+            <div>
+              <p class="text-3xl font-bold">1.2k+</p>
+              <p class="text-slate-400 text-sm">Profissionais</p>
+            </div>
+
+            <div>
+              <p class="text-3xl font-bold">98%</p>
+              <p class="text-slate-400 text-sm">Satisfação</p>
+            </div>
+
+            <div>
+              <p class="text-3xl font-bold">24/7</p>
+              <p class="text-slate-400 text-sm">Disponibilidade</p>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="hidden md:flex justify-center">
+          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-[30px] shadow-2xl w-80 border border-white/10">
+
+            <p class="text-slate-300 mb-4">Profissional em destaque</p>
+
+            <div class="bg-white text-slate-800 p-6 rounded-3xl">
+              <div class="flex justify-between mb-4">
+                <div>
+                  <h3 class="font-bold text-xl">Especialista Cloud</h3>
+                  <p class="text-slate-500">São Paulo</p>
+                </div>
+                <div class="text-yellow-500">⭐ 5.0</div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-4 text-center">
+                <div>
+                  <p class="font-bold">50+</p>
+                  <p class="text-xs text-slate-500">Projetos</p>
+                </div>
+                <div>
+                  <p class="font-bold">1h</p>
+                  <p class="text-xs text-slate-500">Resposta</p>
+                </div>
+                <div>
+                  <p class="font-bold">R$180</p>
+                  <p class="text-xs text-slate-500">Hora</p>
+                </div>
+              </div>
+
+              <button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-2xl">
+                Contratar agora
+              </button>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="bg-slate-50 py-20">
+      <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+
+        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+          <div class="text-4xl mb-4">⚡</div>
+          <h3 class="font-bold text-xl mb-3">Profissionais verificados</h3>
+          <p class="text-slate-500 text-sm">Especialistas qualificados perto de você</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+          <div class="text-4xl mb-4">🛡</div>
+          <h3 class="font-bold text-xl mb-3">Atendimento rápido</h3>
+          <p class="text-slate-500 text-sm">Conecte-se e resolva seu problema rápido</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+          <div class="text-4xl mb-4">💎</div>
+          <h3 class="font-bold text-xl mb-3">Orçamentos transparentes</h3>
+          <p class="text-slate-500 text-sm">Sem surpresas no valor final</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="container mx-auto py-20 px-6">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-3xl font-bold text-slate-800">Especialistas disponíveis</h2>
+        <span class="text-sm text-slate-400">Resultados em tempo real</span>
+      </div>
+
+      <div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
+    </section>
+
+  </div>
+
+
+  <!-- LOGIN -->
+  <!-- LOGIN -->
+  <div id="login"
+    class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-900 to-violet-900">
+
+    <div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[30px] shadow-2xl p-8">
+
+      <h2 class="text-3xl font-bold text-white text-center mb-2">
+        Entrar na TechConnect
+      </h2>
+
+      <p class="text-slate-300 text-center mb-8">
+        Acesse sua conta
+      </p>
+
+      <!-- LOGIN SOCIAL -->
+      <div class="space-y-3 mb-6">
+
+        <button id="googleLogin"
+          class="w-full bg-white text-slate-800 py-3 rounded-2xl font-semibold flex items-center justify-center gap-3 hover:scale-[1.02] transition">
+          <img width="22" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+          Entrar com Google
+        </button>
+
+        <button id="githubLogin"
+          class="w-full bg-black text-white py-3 rounded-2xl font-semibold flex items-center justify-center gap-3 hover:scale-[1.02] transition">
+          <img width="22" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+          Entrar com GitHub
+        </button>
+
+      </div>
+
+      <div class="flex items-center gap-3 mb-6">
+        <hr class="flex-1 border-white/20">
+        <span class="text-slate-400 text-sm">ou</span>
+        <hr class="flex-1 border-white/20">
+      </div>
+
+      <input id="loginEmail" type="email" placeholder="Seu email"
+        class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 outline-none" />
+
+      <input id="loginSenha" type="password" placeholder="Senha"
+        class="w-full mb-5 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 outline-none" />
+
+      <button id="fazerLogin"
+        class="w-full bg-indigo-600 hover:bg-indigo-700 py-4 rounded-2xl font-bold text-white shadow-xl">
+        Entrar
+      </button>
+
+      <p id="loginErro" class="hidden text-red-400 text-center mt-4">
+        Email ou senha inválidos
+      </p>
+
+      <button id="voltarLogin" class="mt-6 text-slate-300 w-full">
+        ← Voltar
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- CADASTRO -->
+  <div id="cadastro"
+    class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-900 to-violet-900">
+
+    <div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[30px] shadow-2xl p-8">
+
+      <h2 class="text-3xl font-bold text-white text-center mb-8">
+        Criar Conta
+      </h2>
+
+      <input id="cadUsuario" placeholder="Nome"
+        class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+
+      <input id="cadEmail" placeholder="Email"
+        class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+
+      <input id="cadSenha" type="password" placeholder="Senha"
+        class="w-full mb-5 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+
+      <button id="fazerCadastro" class="w-full bg-violet-600 hover:bg-violet-700 py-4 rounded-2xl font-bold text-white">
+        Cadastrar
+      </button>
+
+      <p id="cadSucesso" class="hidden text-green-400 text-center mt-4">
+        Cadastro realizado com sucesso
+      </p>
+
+      <button id="voltarCadastro" class="mt-6 text-slate-300 w-full">
+        ← Voltar
+      </button>
+
+    </div>
+  </div>
+
+  <!-- PERFIL DRAWER -->
+  <!-- PERFIL DRAWER -->
+  <div id="perfilDrawer" class="fixed inset-0 bg-black/50 hidden z-50">
+    <div onclick="fecharPerfil()" class="absolute inset-0"></div>
+
+    <div id="drawerBox" class="absolute right-0 top-0 h-full w-full md:w-[500px]
+bg-slate-50 shadow-2xl
+translate-x-full transition-transform duration-500
+overflow-y-auto">
+
+      <!-- HEADER -->
+      <div class="bg-gradient-to-br from-indigo-600 via-violet-700 to-purple-800 p-8 text-white relative">
+
+        <button onclick="fecharPerfil()" class="absolute top-5 right-5 bg-white/20 hover:bg-white/30
+px-4 py-2 rounded-2xl">
+          ✕
+        </button>
+
+        <div class="flex items-center gap-5">
+
+          <img id="perfilFoto" class="w-24 h-24 rounded-3xl border-4 border-white shadow-xl object-cover" />
+
+          <div>
+
+            <h2 id="perfilNome" class="text-3xl font-bold">
+            </h2>
+
+            <p id="perfilArea" class="text-indigo-100">
+            </p>
+
+            <p id="perfilCidade" class="text-indigo-200 text-sm">
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap">
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                ⭐ <span id="perfilRating"></span>
+              </span>
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                R$ <span id="perfilValor"></span>/h
+              </span>
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                <span id="perfilIdade"></span> anos
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- CONTEÚDO -->
+      <div class="p-6 space-y-7">
+
+
+        <!-- MÉTRICAS -->
+        <div class="grid grid-cols-3 gap-4">
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              96%
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Taxa sucesso
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              42
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Projetos
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              1h
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Resposta
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- SOBRE -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Sobre o profissional
+          </h3>
+
+          <p id="perfilBio" class="text-slate-600 leading-relaxed">
+          </p>
+
+        </div>
+
+
+
+        <!-- SKILLS -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Especialidades
+          </h3>
+
+          <div class="flex flex-wrap gap-3">
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Suporte
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Infraestrutura
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Windows
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Redes
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Cloud
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Desenvolvimento
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- AVALIAÇÕES -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Avaliações
+          </h3>
+
+          <select id="notaInput" class="border rounded-xl px-4 py-3 mb-4 w-full">
+
+            <option value="5">
+              ⭐ 5 estrelas
+            </option>
+
+            <option value="4">
+              ⭐ 4 estrelas
+            </option>
+
+            <option value="3">
+              ⭐ 3 estrelas
+            </option>
+
+            <option value="2">
+              ⭐ 2 estrelas
+            </option>
+
+            <option value="1">
+              ⭐ 1 estrela
+            </option>
+
+          </select>
+
+
+          <textarea id="comentarioInput" placeholder="Escreva sua avaliação..."
+            class="w-full border rounded-2xl p-4 mb-4">
+</textarea>
+
+
+          <button id="btnAvaliar" class="w-full bg-indigo-600 hover:bg-indigo-700
+text-white py-3 rounded-2xl">
+            Enviar avaliação
+          </button>
+
+
+          <!-- LISTA DAS AVALIAÇÕES -->
+          <div id="listaAvaliacoes" class="mt-6 space-y-4">
+
+            <div class="border rounded-2xl p-4">
+              <p class="font-semibold">
+                Carlos Mendes
+              </p>
+
+              <p class="text-yellow-500 text-sm">
+                ⭐⭐⭐⭐⭐
+              </p>
+
+              <p class="text-sm text-gray-500 mt-2">
+                Excelente profissional, resolveu meu problema em minutos.
+              </p>
+            </div>
+
+
+            <div class="border rounded-2xl p-4">
+              <p class="font-semibold">
+                Fernanda Lima
+              </p>
+
+              <p class="text-yellow-500 text-sm">
+                ⭐⭐⭐⭐
+              </p>
+
+              <p class="text-sm text-gray-500 mt-2">
+                Muito bom atendimento e suporte rápido.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- CTA -->
+        <button id="btnChatPerfil" class="w-full bg-gradient-to-r from-indigo-600 to-violet-700
+hover:scale-[1.02]
+text-white py-4 rounded-2xl text-lg shadow-xl transition">
+          Entrar em contato
+        </button>
+
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- CHAT -->
+  <div id="chatBox"
+    class="fixed bottom-6 right-6 w-[380px] h-[560px] bg-white rounded-3xl shadow-2xl overflow-hidden hidden z-50 border border-gray-200 flex flex-col translate-x-full transition-all duration-300">
+
+    <div class="bg-gradient-to-r from-indigo-600 to-violet-700 text-white p-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img id="chatAvatar" src="" class="w-12 h-12 rounded-full border-2 border-white object-cover">
+          <div>
+            <h3 id="chatNome" class="font-bold"></h3>
+            <p id="chatArea" class="text-xs text-indigo-100"></p>
+            <p class="text-[11px] text-indigo-200">● Online agora</p>
+          </div>
+        </div>
+        <button onclick="fecharChat()" class="bg-white/20 px-3 py-2 rounded-xl">✕</button>
+      </div>
+    </div>
+
+    <div id="chatMensagens" class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3"></div>
+    <div id="digitando" class="hidden px-4 pb-2 text-xs text-gray-400">Técnico está digitando...</div>
+
+    <div class="border-t p-3 bg-white">
+      <div class="flex items-center gap-2">
+        <input id="chatInput" placeholder="Digite sua mensagem..."
+          class="flex-1 bg-gray-100 rounded-full px-5 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
+
+        <button onclick="enviarMensagem()"
+          class="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg">
+          ➤
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="perfilUsuario" class="hidden min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-950 text-white">
+
+  <!-- HEADER -->
+  <header class="bg-white/5 backdrop-blur border-b border-white/10 p-6 flex justify-between items-center">
+    <h2 class="text-2xl font-bold">Meu Perfil</h2>
+
+    <button id="voltarPerfilUsuario" class="px-4 py-2 rounded-xl border border-white/20 hover:bg-white/10 transition">
+      ← Voltar
+    </button>
+  </header>
+
+  <section class="max-w-4xl mx-auto p-8">
+
+    <div class="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/10">
+
+      <!-- TOPO -->
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+
+        <div class="relative">
+
+          <img id="previewFoto"
+            class="w-32 h-32 rounded-full object-cover border-4 border-white/20 shadow-lg hidden">
+
+          <div id="perfilInicial"
+            class="w-32 h-32 rounded-full bg-gradient-to-br from-indigo-600 to-violet-700 text-white flex items-center justify-center text-4xl font-bold shadow-lg">
+            L
+          </div>
+
+          <label
+            class="absolute bottom-0 right-0 bg-white/10 text-white p-2 rounded-full cursor-pointer shadow-lg hover:scale-110 transition">
+            ✎
+            <input type="file" id="inputFoto" class="hidden" accept="image/*">
+          </label>
+
+        </div>
+
+        <div class="flex-1">
+          <h3 id="perfilUserNome" class="text-3xl font-bold"></h3>
+          <p id="perfilUserEmail" class="text-indigo-300 mt-2"></p>
+
+          <p class="mt-4 text-slate-300">
+            Membro da plataforma TechConnect.
+          </p>
+        </div>
+
+        <div class="mt-6 w-full md:w-auto">
+          <label class="font-semibold text-indigo-300">Biografia</label>
+
+          <textarea id="editarBio"
+            class="w-full mt-2 bg-white/5 border border-white/10 rounded-xl p-3 h-28 resize-none text-white placeholder-slate-400 outline-none focus:ring-2 focus:ring-indigo-500 transition"
+            placeholder="Fale um pouco sobre você..."></textarea>
+        </div>
+
+      </div>
+
+      <hr class="my-8 border-white/10">
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div>
+          <label class="font-semibold text-indigo-300">Nome</label>
+          <input id="editarNome"
+            class="w-full mt-2 bg-white/5 border border-white/10 rounded-xl p-3 text-white outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+
+        <div>
+          <label class="font-semibold text-indigo-300">Email</label>
+          <input id="editarEmail"
+            class="w-full mt-2 bg-white/5 border border-white/10 rounded-xl p-3 text-white outline-none focus:ring-2 focus:ring-indigo-500 transition">
+        </div>
+
+      </div>
+
+      <button id="salvarPerfilUsuario"
+        class="mt-8 bg-gradient-to-r from-indigo-600 to-violet-700 hover:opacity-90 text-white px-8 py-3 rounded-2xl shadow-xl transition hover:scale-[1.02]">
+        Salvar alterações
+      </button>
+
+      <p id="perfilSalvo" class="hidden mt-4 text-green-400 font-semibold">
+        ✔ Perfil atualizado com sucesso
+      </p>
+
+    </div>
+
+  </section>
+</div>
+
+  <script src="./script/app.js"></script>
+  <script src="./script/auth.js"></script>
+  <script src="./script/tecnicos.js"></script>
+  <script src="./script/chat.js"></script>
+  <script src="./script/avaliacoes.js"></script>
+
+  <!-- FOOTER -->
+  <footer class="bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-white mt-20">
+
+  <div class="container mx-auto px-6 py-16 grid md:grid-cols-4 gap-10">
+
+    <!-- LOGO / SOBRE -->
+    <div>
+      <h2 class="text-2xl font-bold mb-4">TechConnect</h2>
+      <p class="text-slate-400 text-sm leading-relaxed">
+        Conectando você aos melhores profissionais de tecnologia.
+        Suporte, desenvolvimento e soluções digitais em um só lugar.
+      </p>
+    </div>
+
+    <!-- LINKS -->
+    <div>
+      <h3 class="font-semibold mb-4">Plataforma</h3>
+      <ul class="space-y-2 text-slate-400 text-sm">
+        <li><a href="#" class="hover:text-white transition">Como funciona</a></li>
+        <li><a href="#" class="hover:text-white transition">Profissionais</a></li>
+        <li><a href="#" class="hover:text-white transition">Planos</a></li>
+        <li><a href="#" class="hover:text-white transition">Segurança</a></li>
+      </ul>
+    </div>
+
+    <!-- SUPORTE -->
+    <div>
+      <h3 class="font-semibold mb-4">Suporte</h3>
+      <ul class="space-y-2 text-slate-400 text-sm">
+        <li><a href="#" class="hover:text-white transition">Central de ajuda</a></li>
+        <li><a href="#" class="hover:text-white transition">Contato</a></li>
+        <li><a href="#" class="hover:text-white transition">Termos de uso</a></li>
+        <li><a href="#" class="hover:text-white transition">Privacidade</a></li>
+      </ul>
+    </div>
+
+    <!-- SOCIAL -->
+    <div>
+      <h3 class="font-semibold mb-4">Conecte-se</h3>
+
+      <div class="flex gap-4">
+
+        <a href="#" class="bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+          🌐
+        </a>
+
+        <a href="#" class="bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+          💼
+        </a>
+
+        <a href="#" class="bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+          📸
+        </a>
+
+      </div>
+
+      <p class="text-slate-400 text-sm mt-4">
+        Siga nossas redes sociais
+      </p>
+    </div>
+
+  </div>
+
+  <!-- DIVISOR -->
+  <div class="border-t border-white/10"></div>
+
+  <!-- COPYRIGHT -->
+  <div class="container mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400">
+
+    <p>© 2026 TechConnect. Todos os direitos reservados.</p>
+
+    <div class="flex gap-6 mt-3 md:mt-0">
+      <a href="#" class="hover:text-white transition">Privacidade</a>
+      <a href="#" class="hover:text-white transition">Termos</a>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+
+</html>
