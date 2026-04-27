@@ -1,331 +1,263 @@
 /* ----------- TELAS ----------- */
 
-function showScreen(tela){
+function showScreen(tela) {
 
-const telas=[
-"home",
-"login",
-"cadastro",
-"perfilUsuario"
-];
+    const telas = ["home", "login", "cadastro", "perfilUsuario"];
 
-telas.forEach(id=>{
-let el=document.getElementById(id);
+    telas.forEach(id => {
+        let el = document.getElementById(id);
+        if (el) {
+            el.classList.add("hidden");
+            el.classList.remove("flex");
+        }
+    });
 
-if(el){
-el.classList.add("hidden");
-el.classList.remove("flex");
+    if (tela === "home") {
+        document.getElementById("home").classList.remove("hidden");
+    }
+
+    if (tela === "login") {
+        let login = document.getElementById("login");
+        login.classList.remove("hidden");
+        login.classList.add("flex");
+    }
+
+    if (tela === "cadastro") {
+        let cadastro = document.getElementById("cadastro");
+        cadastro.classList.remove("hidden");
+        cadastro.classList.add("flex");
+    }
+
+    if (tela === "perfilUsuario") {
+        document.getElementById("perfilUsuario").classList.remove("hidden");
+    }
 }
-
-});
-
-
-if(tela==="home"){
-document.getElementById("home").classList.remove("hidden");
-}
-
-
-if(tela==="login"){
-let login=document.getElementById("login");
-
-login.classList.remove("hidden");
-login.classList.add("flex");
-}
-
-
-if(tela==="cadastro"){
-let cadastro=document.getElementById("cadastro");
-
-cadastro.classList.remove("hidden");
-cadastro.classList.add("flex");
-}
-
-
-if(tela==="perfilUsuario"){
-document
-.getElementById("perfilUsuario")
-.classList.remove("hidden");
-}
-
-}
-
-
-
-/* ---------- NAVEGAÇÃO ---------- */
-
-btnLogin.onclick=()=>showScreen("login");
-
-btnCadastro.onclick=()=>showScreen("cadastro");
-
-voltarLogin.onclick=()=>showScreen("home");
-
-voltarCadastro.onclick=()=>showScreen("home");
-
-voltarPerfilUsuario.onclick=()=>showScreen("home");
-
 
 
 /* ---------- STORAGE ---------- */
 
-function getUser(){
-
-return JSON.parse(
-localStorage.getItem("user")
-);
-
+function getUser() {
+    return JSON.parse(localStorage.getItem("user"));
 }
 
-
-function setUser(user){
-
-localStorage.setItem(
-"user",
-JSON.stringify(user)
-);
-
+function setUser(user) {
+    localStorage.setItem("user", JSON.stringify(user));
 }
-
 
 
 /* ---------- LOGIN ---------- */
 
-function loginUser(user){
+function loginUser(user) {
 
-localStorage.setItem(
-"logado",
-"true"
-);
+    localStorage.setItem("logado", "true");
 
-/* MOSTRAR NOME NO TOPO */
-document.getElementById("userEmail").innerText =
-user.usuario || user.nome || user.email;
+    /* Nome no topo */
+    document.getElementById("userEmail").innerText =
+        user.usuario || user.nome || user.email;
 
+    /* Avatar */
+    const avatarLetra = document.getElementById("userAvatar");
+    const avatarImg = document.getElementById("userAvatarImg");
 
-/* AVATAR COM PRIMEIRA LETRA */
-document.getElementById("userAvatar").innerText =
-(user.usuario || user.email)
-.charAt(0)
-.toUpperCase();
+    if (user.foto) {
+        avatarImg.src = user.foto;
+        avatarImg.classList.remove("hidden");
+        avatarLetra.classList.add("hidden");
+    } else {
+        avatarLetra.innerText =
+            (user.usuario || user.email).charAt(0).toUpperCase();
 
+        avatarImg.classList.add("hidden");
+        avatarLetra.classList.remove("hidden");
+    }
 
-document
-.getElementById("navButtons")
-.classList.add("hidden");
+    document.getElementById("navButtons").classList.add("hidden");
+    document.getElementById("userArea").classList.remove("hidden");
 
-
-document
-.getElementById("userArea")
-.classList.remove("hidden");
-
-
-showScreen("home");
-
+    showScreen("home");
 }
 
+
+/* ---------- NAVEGAÇÃO ---------- */
+
+btnLogin.onclick = () => showScreen("login");
+btnCadastro.onclick = () => showScreen("cadastro");
+voltarLogin.onclick = () => showScreen("home");
+voltarCadastro.onclick = () => showScreen("home");
+voltarPerfilUsuario.onclick = () => showScreen("home");
 
 
 /* ---------- CADASTRO ---------- */
 
-fazerCadastro.onclick=()=>{
+fazerCadastro.onclick = () => {
 
-const usuario=cadUsuario.value;
+    const usuario = cadUsuario.value;
+    const email = cadEmail.value;
+    const senha = cadSenha.value;
 
-const email=cadEmail.value;
+    if (!usuario || !email || !senha) return;
 
-const senha=cadSenha.value;
+    setUser({ usuario, email, senha });
 
+    cadSucesso.classList.remove("hidden");
 
-if(!usuario || !email || !senha){
-return;
-}
-
-
-setUser({
-usuario,
-email,
-senha
-});
-
-
-cadSucesso.classList.remove("hidden");
-
-
-setTimeout(()=>{
-
-showScreen("login");
-
-},1200);
-
+    setTimeout(() => {
+        showScreen("login");
+    }, 1200);
 };
 
 
+/* ---------- LOGIN ---------- */
 
-/* ---------- ENTRAR ---------- */
+fazerLogin.onclick = () => {
 
-fazerLogin.onclick=()=>{
+    const email = loginEmail.value;
+    const senha = loginSenha.value;
+    const user = getUser();
 
-const email=loginEmail.value;
-
-const senha=loginSenha.value;
-
-const user=getUser();
-
-
-if(
-user &&
-user.email===email &&
-user.senha===senha
-){
-
-loginUser(user);
-
-}
-
-else{
-
-loginErro.classList.remove("hidden");
-
-}
-
+    if (user && user.email === email && user.senha === senha) {
+        loginUser(user);
+    } else {
+        loginErro.classList.remove("hidden");
+    }
 };
-
 
 
 /* ---------- LOGOUT ---------- */
 
-btnLogout.onclick=()=>{
+btnLogout.onclick = () => {
 
-localStorage.removeItem("logado");
+    localStorage.removeItem("logado");
 
-document
-.getElementById("userArea")
-.classList.add("hidden");
+    document.getElementById("userArea").classList.add("hidden");
+    document.getElementById("navButtons").classList.remove("hidden");
 
-document
-.getElementById("navButtons")
-.classList.remove("hidden");
-
-showScreen("home");
-
+    showScreen("home");
 };
-
 
 
 /* -------- PERFIL DO USUÁRIO -------- */
 
-btnMeuPerfil.onclick=()=>{
+btnMeuPerfil.onclick = () => {
 
-const user=getUser();
+    const user = getUser();
+    if (!user) return;
 
-if(!user) return;
+    perfilUserNome.innerText = user.usuario;
+    perfilUserEmail.innerText = user.email;
 
+    editarNome.value = user.usuario;
+    editarEmail.value = user.email;
+    editarBio.value = user.bio || "";
 
-perfilUserNome.innerText=user.usuario;
+    if (user.foto) {
+        previewFoto.src = user.foto;
+        previewFoto.classList.remove("hidden");
+        perfilInicial.classList.add("hidden");
+    } else {
+        perfilInicial.innerText = user.usuario.charAt(0).toUpperCase();
+        previewFoto.classList.add("hidden");
+        perfilInicial.classList.remove("hidden");
+    }
 
-perfilUserEmail.innerText=user.email;
-
-
-editarNome.value=user.usuario;
-
-editarEmail.value=user.email;
-
-
-perfilInicial.innerText=
-user.usuario.charAt(0).toUpperCase();
-
-
-showScreen("perfilUsuario");
-
+    showScreen("perfilUsuario");
 };
-
 
 
 /* -------- SALVAR PERFIL -------- */
 
-salvarPerfilUsuario.onclick=()=>{
+salvarPerfilUsuario.onclick = () => {
 
-let user=getUser();
+    let user = getUser();
 
-user.usuario=editarNome.value;
+    user.usuario = editarNome.value;
+    user.email = editarEmail.value;
+    user.bio = editarBio.value;
 
-user.email=editarEmail.value;
+    setUser(user);
 
-setUser(user);
+    /* Atualiza topo */
+    userEmail.innerText = user.usuario;
 
+    const avatarLetra = document.getElementById("userAvatar");
+    const avatarImg = document.getElementById("userAvatarImg");
 
-/* Atualiza topo */
-userEmail.innerText=user.usuario;
+    if (user.foto) {
+        avatarImg.src = user.foto;
+        avatarImg.classList.remove("hidden");
+        avatarLetra.classList.add("hidden");
+    } else {
+        avatarLetra.innerText = user.usuario.charAt(0).toUpperCase();
+        avatarImg.classList.add("hidden");
+        avatarLetra.classList.remove("hidden");
+    }
 
-userAvatar.innerText=
-user.usuario.charAt(0).toUpperCase();
+    perfilSalvo.classList.remove("hidden");
 
-
-perfilSalvo.classList.remove("hidden");
-
-
-setTimeout(()=>{
-
-perfilSalvo.classList.add("hidden");
-
-},2000);
-
+    setTimeout(() => {
+        perfilSalvo.classList.add("hidden");
+    }, 2000);
 };
 
 
+/* -------- FOTO -------- */
 
-/* ------- LOGIN GOOGLE DEMO ------- */
+inputFoto.onchange = (e) => {
 
-googleLogin.onclick=()=>{
+    const file = e.target.files[0];
+    if (!file) return;
 
-let user={
+    const reader = new FileReader();
 
-usuario:"Usuário Google",
+    reader.onload = function (event) {
 
-email:"google@usuario.com"
+        previewFoto.src = event.target.result;
+        previewFoto.classList.remove("hidden");
+        perfilInicial.classList.add("hidden");
 
-};
+        let user = getUser();
+        user.foto = event.target.result;
 
-setUser(user);
+        setUser(user);
+    };
 
-loginUser(user);
-
-};
-
-
-
-/* ------- LOGIN GITHUB DEMO ------- */
-
-githubLogin.onclick=()=>{
-
-let user={
-
-usuario:"Usuário GitHub",
-
-email:"github@usuario.com"
-
-};
-
-setUser(user);
-
-loginUser(user);
-
+    reader.readAsDataURL(file);
 };
 
 
+/* ------- LOGIN SOCIAL (DEMO) ------- */
 
-/* ------- sessão persistente ------- */
+googleLogin.onclick = () => {
 
-window.onload=()=>{
+    let user = {
+        usuario: "Usuário Google",
+        email: "google@usuario.com"
+    };
 
-const logado=
-localStorage.getItem("logado");
+    setUser(user);
+    loginUser(user);
+};
 
-const user=getUser();
+githubLogin.onclick = () => {
 
-if(logado && user){
+    let user = {
+        usuario: "Usuário GitHub",
+        email: "github@usuario.com"
+    };
 
-loginUser(user);
+    setUser(user);
+    loginUser(user);
+};
 
-}
 
+/* ------- SESSÃO PERSISTENTE ------- */
+
+window.onload = () => {
+
+    const logado = localStorage.getItem("logado");
+    const user = getUser();
+
+    if (logado && user) {
+        loginUser(user);
+    }
 };
