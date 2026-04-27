@@ -5,20 +5,31 @@ window.enviarMensagem = enviarMensagem;
 let chatAtual = null;
 
 
-// abrir
+/* ========= ABRIR CHAT ========= */
 function abrirChat(tecnico){
+
+if(!tecnico){
+console.error("Nenhum técnico recebido no abrirChat()");
+return;
+}
 
 chatAtual = tecnico;
 
-document.getElementById("chatNome").innerText = tecnico.nome;
-document.getElementById("chatArea").innerText = tecnico.area;
+document.getElementById("chatNome").innerText = tecnico.nome || "";
+document.getElementById("chatArea").innerText = tecnico.area || "";
 
-document.getElementById("chatAvatar").src =
-tecnico.foto;
+const avatar = document.getElementById("chatAvatar");
+
+if(avatar){
+avatar.src = tecnico.foto || "https://i.pravatar.cc/150?img=1";
+}
 
 const chat = document.getElementById("chatBox");
 
 chat.classList.remove("hidden");
+
+/* força reflow para animação funcionar */
+chat.offsetHeight;
 
 setTimeout(()=>{
 chat.classList.remove("translate-x-full");
@@ -29,7 +40,8 @@ carregarMensagens();
 }
 
 
-// fechar
+
+/* ========= FECHAR ========= */
 function fecharChat(){
 
 const chat = document.getElementById("chatBox");
@@ -44,19 +56,26 @@ chat.classList.add("hidden");
 
 
 
-// storage
+/* ========= STORAGE ========= */
 function getMensagens(){
+
+if(!chatAtual) return [];
+
 return JSON.parse(
 localStorage.getItem(
-"chat_"+chatAtual.nome
+"chat_" + chatAtual.nome
 )
-)||[];
+) || [];
+
 }
+
 
 function salvarMensagens(msgs){
 
+if(!chatAtual) return;
+
 localStorage.setItem(
-"chat_"+chatAtual.nome,
+"chat_" + chatAtual.nome,
 JSON.stringify(msgs)
 );
 
@@ -64,36 +83,27 @@ JSON.stringify(msgs)
 
 
 
-// render
+/* ========= RENDER ========= */
 function carregarMensagens(){
 
 const container =
-document.getElementById(
-"chatMensagens"
-);
+document.getElementById("chatMensagens");
 
-container.innerHTML="";
+if(!container) return;
+
+container.innerHTML = "";
 
 const msgs = getMensagens();
 
 msgs.forEach(m=>{
 
 container.innerHTML += `
-
-<div class="flex ${
-m.eu ?
-'justify-end'
-:
-'justify-start'
-}">
+<div class="flex ${m.eu ? 'justify-end':'justify-start'}">
 
 <div class="
 ${m.eu
-?
-'bg-green-600 text-white rounded-br-md'
-:
-'bg-white border rounded-bl-md'
-}
+? 'bg-indigo-600 text-white rounded-br-md'
+: 'bg-white border rounded-bl-md'}
 
 max-w-[75%]
 px-4 py-3
@@ -111,45 +121,40 @@ ${m.hora}
 </div>
 
 </div>
-
 `;
 
 });
 
-container.scrollTop=
+container.scrollTop =
 container.scrollHeight;
 
 }
 
 
 
-// enviar
+/* ========= ENVIAR ========= */
 function enviarMensagem(){
 
+if(!chatAtual) return;
+
 const input =
-document.getElementById(
-"chatInput"
-);
+document.getElementById("chatInput");
 
 const texto =
 input.value.trim();
 
 if(!texto) return;
 
-const msgs =
-getMensagens();
-
+const msgs = getMensagens();
 
 msgs.push({
 texto,
 eu:true,
-hora:new Date()
-.toLocaleTimeString([],{
-hour:'2-digit',
-minute:'2-digit'
+hora:new Date().toLocaleTimeString([],{
+hour:"2-digit",
+minute:"2-digit"
 })
 });
-
 
 salvarMensagens(msgs);
 
@@ -158,33 +163,25 @@ input.value="";
 carregarMensagens();
 
 
-// digitando fake
-document
-.getElementById("digitando")
-.classList.remove("hidden");
+/* digitando fake */
+const digitando =
+document.getElementById("digitando");
+
+digitando.classList.remove("hidden");
 
 
 setTimeout(()=>{
 
-document
-.getElementById("digitando")
-.classList.add("hidden");
-
+digitando.classList.add("hidden");
 
 msgs.push({
-
 texto:"Olá! Recebi sua mensagem 👍 Como posso ajudar?",
-
 eu:false,
-
-hora:new Date()
-.toLocaleTimeString([],{
-hour:'2-digit',
-minute:'2-digit'
+hora:new Date().toLocaleTimeString([],{
+hour:"2-digit",
+minute:"2-digit"
 })
-
 });
-
 
 salvarMensagens(msgs);
 
@@ -196,27 +193,45 @@ carregarMensagens();
 
 
 
-// enter envia
-document
-.getElementById("chatInput")
-.addEventListener(
+/* ========= ENTER ========= */
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+const input =
+document.getElementById("chatInput");
+
+if(input){
+
+input.addEventListener(
 "keypress",
 function(e){
 
 if(e.key==="Enter"){
+e.preventDefault();
 enviarMensagem();
 }
 
 }
 );
 
+}
 
-document
-.getElementById("btnChatPerfil")
-.onclick = ()=>{
 
-abrirChat(
-tecnicoSelecionado
-);
+/* botão do perfil */
+const btnPerfil =
+document.getElementById("btnChatPerfil");
+
+if(btnPerfil){
+
+btnPerfil.onclick = function(){
+
+if(window.tecnicoSelecionado){
+abrirChat(window.tecnicoSelecionado);
+}
 
 };
+
+}
+
+});

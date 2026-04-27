@@ -1,522 +1,676 @@
 <!doctype html>
 <html lang="pt-br">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TechConnect</title>
-  <link rel="stylesheet" href="./styles/style.css">
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TechConnect</title>
+<link rel="stylesheet" href="./styles/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-white">
-  <!-- ================= HOME ================= -->
-  <div id="home">
+<body class="bg-slate-50">
 
-  <!-- HEADER (mantido, só refinado visualmente) -->
-  <header class="bg-white border-b shadow-sm">
-    <nav class="container mx-auto flex justify-between items-center p-4">
-      <div class="flex items-center gap-2">
-        <img src="../assets/techlogo.png" alt="TechConnect" class="h-16" />
+<!-- ================= HOME ================= -->
+<div id="home">
+
+<header class="bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm sticky top-0 z-50">
+<nav class="container mx-auto flex justify-between items-center p-5">
+
+<div class="flex items-center gap-3">
+<span class="text-xl font-bold text-slate-800">TechConnect</span>
+</div>
+
+<div id="navButtons" class="flex gap-4">
+<button id="btnLogin" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-2xl shadow-lg transition">
+Entrar
+</button>
+
+<button id="btnCadastro" class="border border-slate-300 px-5 py-2 rounded-2xl text-slate-700 hover:bg-slate-100 transition">
+Cadastrar
+</button>
+</div>
+
+<div id="userArea" class="hidden flex gap-4 items-center">
+
+  <button
+    id="btnMeuPerfil"
+    class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-2 rounded-2xl shadow hover:bg-slate-50 transition">
+
+      <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold"
+           id="userAvatar">
+      U
       </div>
 
-      <div id="navButtons" class="flex gap-3">
-        <button id="btnLogin"
-          class="bg-green-600 hover:bg-green-700 transition text-white px-5 py-2 rounded-xl shadow">
-          Entrar
-        </button>
-
-        <button id="btnCadastro"
-          class="border border-green-600 px-5 py-2 rounded-xl text-green-600 hover:bg-green-50 transition">
-          Cadastrar
-        </button>
+      <div class="text-left">
+        <p class="text-xs text-slate-400">Olá,</p>
+        <p id="userEmail" class="font-semibold text-slate-800"></p>
       </div>
 
-      <div id="userArea" class="hidden flex gap-4 items-center">
-        <span id="userEmail"></span>
-        <button id="btnLogout" class="bg-red-500 text-white px-3 py-1 rounded">
-          Sair
-        </button>
-      </div>
-    </nav>
-  </header>
+  </button>
 
-  <!-- HERO NOVO -->
-  <section class="bg-gradient-to-r from-green-600 to-green-800 text-white">
-
-    <div class="container mx-auto px-6 py-20 grid md:grid-cols-2 gap-10 items-center">
-
-      <!-- TEXTO -->
-      <div>
-        <h1 class="text-5xl font-bold leading-tight mb-6">
-          Conectando você aos melhores profissionais de TI
-        </h1>
-
-        <p class="text-green-100 text-lg mb-8">
-          Suporte técnico, redes, servidores e desenvolvimento — tudo em um só lugar.
-        </p>
-
-        <!-- BUSCA -->
-        <div class="flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden shadow-xl w-full max-w-md">
-
-          <input 
-            id="searchInput"
-            placeholder="Ex: redes, suporte, dev..."
-            class="flex-1 px-5 py-4 text-gray-700 outline-none"
-          />
-
-          <button 
-            id="btnBuscar"
-            class="bg-green-700 hover:bg-green-800 transition px-6 py-4 font-semibold">
-            Buscar
-          </button>
-
-        </div>
-      </div>
-
-      <!-- VISUAL DIREITA -->
-      <div class="hidden md:flex justify-center">
-
-        <div class="bg-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-xl w-72">
-
-          <p class="text-sm mb-2 text-green-200">Profissional em destaque</p>
-
-          <div class="bg-white text-gray-800 p-4 rounded-xl shadow">
-            <h3 class="font-bold">Especialista em Redes</h3>
-            <p class="text-sm text-gray-500">São Paulo</p>
-            <p class="text-yellow-500 mt-2">⭐ 5.0</p>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- BENEFÍCIOS -->
-  <section class="bg-gray-50 py-14">
-    <div class="container mx-auto px-6 grid md:grid-cols-3 gap-6 text-center">
-
-      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
-        <h3 class="font-bold text-lg mb-2">Profissionais verificados</h3>
-        <p class="text-gray-500 text-sm">Especialistas qualificados perto de você</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
-        <h3 class="font-bold text-lg mb-2">Atendimento rápido</h3>
-        <p class="text-gray-500 text-sm">Conecte-se e resolva seu problema rápido</p>
-      </div>
-
-      <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition">
-        <h3 class="font-bold text-lg mb-2">Orçamentos transparentes</h3>
-        <p class="text-gray-500 text-sm">Sem surpresas no valor final</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- LISTA -->
-  <section class="container mx-auto py-16 px-6">
-
-    <div class="flex justify-between items-center mb-8">
-      <h2 class="text-2xl font-bold text-gray-800">
-        Especialistas disponíveis
-      </h2>
-
-      <span class="text-sm text-gray-400">
-        Resultados em tempo real
-      </span>
-    </div>
-
-    <div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
-
-  </section>
+  <button id="btnLogout" class="bg-red-500 text-white px-4 py-2 rounded-xl">
+    Sair
+  </button>
 
 </div>
 
-  <!-- ================= LOGIN ================= -->
-  <div id="login" class="hidden min-h-screen flex justify-center items-center bg-gray-100">
-  <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
+</nav>
+</header>
 
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
-      Bem-vindo de volta 👋
-    </h2>
 
-    <!-- LOGIN SOCIAL -->
-    <div class="flex flex-col gap-3 mb-4">
-      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5">
-        Entrar com Google
-      </button>
+<section class="bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-white relative overflow-hidden">
 
-      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
-        <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="h-5">
-        Entrar com GitHub
-      </button>
-    </div>
+<div class="absolute -top-20 -left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"></div>
+<div class="absolute top-40 right-20 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl"></div>
 
-    <!-- DIVISOR -->
-    <div class="flex items-center my-4">
-      <hr class="flex-1 border-gray-300">
-      <span class="px-2 text-gray-400 text-sm">ou</span>
-      <hr class="flex-1 border-gray-300">
-    </div>
+<div class="container mx-auto px-6 py-28 grid md:grid-cols-2 gap-12 items-center">
 
-    <!-- FORM -->
-    <input id="loginEmail" type="email" placeholder="Email"
-      class="w-full mb-3 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-800 outline-none" />
+<div>
+<span class="bg-white/10 border border-white/20 px-5 py-2 rounded-full text-sm">
+Marketplace para profissionais de TI
+</span>
 
-    <input id="loginSenha" type="password" placeholder="Senha"
-      class="w-full mb-2 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-800 outline-none" />
+<h1 class="text-6xl font-bold leading-tight mt-8 mb-6">
+Conectando você aos melhores profissionais de TI
+</h1>
 
-    <!-- ESQUECEU SENHA -->
-    <div class="text-right mb-4">
-      <a href="#" class="text-sm text-green-800 hover:underline">
-        Esqueceu a senha?
-      </a>
-    </div>
+<p class="text-slate-300 text-lg mb-10">
+Suporte técnico, cloud, redes e desenvolvimento em um só lugar.
+</p>
 
-    <button id="fazerLogin"
-      class="w-full bg-green-800 hover:bg-green-800 text-white py-2 rounded-lg transition">
-      Entrar
-    </button>
+<div class="flex flex-col sm:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-xl">
 
-    <p id="loginErro" class="text-red-500 text-sm hidden mt-2 text-center">
-      Dados inválidos
-    </p>
+<input id="searchInput"
+placeholder="Ex: redes, suporte, dev..."
+class="flex-1 px-6 py-5 text-slate-700 outline-none"/>
 
-    <!-- LEMBRAR -->
-    <div class="flex items-center mt-4">
-      <input type="checkbox" id="rememberMe" class="mr-2">
-      <label for="rememberMe" class="text-sm text-gray-600">
-        Lembrar de mim
-      </label>
-    </div>
+<button id="btnBuscar"
+class="bg-indigo-600 hover:bg-indigo-700 px-8 py-5 font-semibold transition">
+Buscar
+</button>
 
-    <button id="voltarLogin" class="mt-6 w-full text-gray-500 hover:underline">
-      ← Voltar
-    </button>
-
-  </div>
 </div>
 
-  <!-- ================= CADASTRO ================= -->
-  <div id="cadastro" class="hidden min-h-screen flex justify-center items-center bg-gray-100">
-  <div class="bg-white p-8 rounded-2xl shadow-lg w-96">
-
-    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">
-      Criar conta 🚀
-    </h2>
-
-    <!-- SOCIAL -->
-    <div class="flex flex-col gap-3 mb-4">
-      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
-        <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="h-5">
-        Cadastrar com Google
-      </button>
-
-      <button class="flex items-center justify-center gap-2 border py-2 rounded-lg hover:bg-gray-50 transition">
-        <img src="https://www.svgrepo.com/show/512317/github-142.svg" class="h-5">
-        Cadastrar com GitHub
-      </button>
-    </div>
-
-    <!-- DIVISOR -->
-    <div class="flex items-center my-4">
-      <hr class="flex-1 border-gray-300">
-      <span class="px-2 text-gray-400 text-sm">ou</span>
-      <hr class="flex-1 border-gray-300">
-    </div>
-
-    <!-- FORM -->
-    <input id="cadEmail" type="email" placeholder="Email"
-      class="w-full mb-3 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-800 outline-none" />
-
-    <input id="cadSenha" type="password" placeholder="Senha"
-      class="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-green-800 outline-none" />
-
-    <button id="fazerCadastro"
-      class="w-full bg-green-800 hover:bg-green-800 text-white py-2 rounded-lg transition">
-      Cadastrar
-    </button>
-
-    <p id="cadSucesso" class="text-green-800 text-sm hidden mt-3 text-center">
-      Cadastro realizado!
-    </p>
-
-    <button id="voltarCadastro" class="mt-6 w-full text-gray-500 hover:underline">
-      ← Voltar
-    </button>
-
-  </div>
+<div class="flex gap-10 mt-10">
+<div>
+<p class="text-3xl font-bold">1.2k+</p>
+<p class="text-slate-400 text-sm">Profissionais</p>
 </div>
 
-  <!-- ================= PERFIL TECNICO ================= -->
-<!-- PAINEL PERFIL MODERNO -->
-<div 
-id="perfilDrawer"
-class="fixed inset-0 bg-black/40 hidden z-50">
-
-<!-- Overlay -->
-<div onclick="fecharPerfil()"
-class="absolute inset-0">
+<div>
+<p class="text-3xl font-bold">98%</p>
+<p class="text-slate-400 text-sm">Satisfação</p>
 </div>
 
-<!-- Drawer -->
-<div id="drawerBox"
-class="absolute right-0 top-0 h-full w-full md:w-[480px] bg-white shadow-2xl 
-translate-x-full transition-transform duration-500 overflow-y-auto">
+<div>
+<p class="text-3xl font-bold">24/7</p>
+<p class="text-slate-400 text-sm">Disponibilidade</p>
+</div>
+</div>
 
-<!-- topo -->
-<div class="bg-gradient-to-r from-green-600 to-green-800 p-8 text-white relative">
+</div>
+
+
+<div class="hidden md:flex justify-center">
+<div class="bg-white/10 backdrop-blur-xl p-8 rounded-[30px] shadow-2xl w-80 border border-white/10">
+
+<p class="text-slate-300 mb-4">Profissional em destaque</p>
+
+<div class="bg-white text-slate-800 p-6 rounded-3xl">
+<div class="flex justify-between mb-4">
+<div>
+<h3 class="font-bold text-xl">Especialista Cloud</h3>
+<p class="text-slate-500">São Paulo</p>
+</div>
+<div class="text-yellow-500">⭐ 5.0</div>
+</div>
+
+<div class="grid grid-cols-3 gap-4 text-center">
+<div>
+<p class="font-bold">50+</p>
+<p class="text-xs text-slate-500">Projetos</p>
+</div>
+<div>
+<p class="font-bold">1h</p>
+<p class="text-xs text-slate-500">Resposta</p>
+</div>
+<div>
+<p class="font-bold">R$180</p>
+<p class="text-xs text-slate-500">Hora</p>
+</div>
+</div>
+
+<button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-2xl">
+Contratar agora
+</button>
+
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section class="bg-slate-50 py-20">
+<div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
+
+<div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+<div class="text-4xl mb-4">⚡</div>
+<h3 class="font-bold text-xl mb-3">Profissionais verificados</h3>
+<p class="text-slate-500 text-sm">Especialistas qualificados perto de você</p>
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+<div class="text-4xl mb-4">🛡</div>
+<h3 class="font-bold text-xl mb-3">Atendimento rápido</h3>
+<p class="text-slate-500 text-sm">Conecte-se e resolva seu problema rápido</p>
+</div>
+
+<div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
+<div class="text-4xl mb-4">💎</div>
+<h3 class="font-bold text-xl mb-3">Orçamentos transparentes</h3>
+<p class="text-slate-500 text-sm">Sem surpresas no valor final</p>
+</div>
+
+</div>
+</section>
+
+
+<section class="container mx-auto py-20 px-6">
+<div class="flex justify-between items-center mb-10">
+<h2 class="text-3xl font-bold text-slate-800">Especialistas disponíveis</h2>
+<span class="text-sm text-slate-400">Resultados em tempo real</span>
+</div>
+
+<div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
+</section>
+
+</div>
+
+
+<!-- LOGIN -->
+<!-- LOGIN -->
+<div id="login" class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-900 to-violet-900">
+
+<div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[30px] shadow-2xl p-8">
+
+<h2 class="text-3xl font-bold text-white text-center mb-2">
+Entrar na TechConnect
+</h2>
+
+<p class="text-slate-300 text-center mb-8">
+Acesse sua conta
+</p>
+
+<!-- LOGIN SOCIAL -->
+<div class="space-y-3 mb-6">
+
+<button id="googleLogin"
+class="w-full bg-white text-slate-800 py-3 rounded-2xl font-semibold flex items-center justify-center gap-3 hover:scale-[1.02] transition">
+<img width="22"
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+Entrar com Google
+</button>
+
+<button id="githubLogin"
+class="w-full bg-black text-white py-3 rounded-2xl font-semibold flex items-center justify-center gap-3 hover:scale-[1.02] transition">
+<img width="22"
+src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+Entrar com GitHub
+</button>
+
+</div>
+
+<div class="flex items-center gap-3 mb-6">
+<hr class="flex-1 border-white/20">
+<span class="text-slate-400 text-sm">ou</span>
+<hr class="flex-1 border-white/20">
+</div>
+
+<input
+id="loginEmail"
+type="email"
+placeholder="Seu email"
+class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 outline-none"
+/>
+
+<input
+id="loginSenha"
+type="password"
+placeholder="Senha"
+class="w-full mb-5 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white placeholder-slate-300 outline-none"
+/>
 
 <button
-onclick="fecharPerfil()"
-class="absolute top-5 right-5 bg-white/20 px-3 py-2 rounded-xl">
+id="fazerLogin"
+class="w-full bg-indigo-600 hover:bg-indigo-700 py-4 rounded-2xl font-bold text-white shadow-xl">
+Entrar
+</button>
+
+<p id="loginErro"
+class="hidden text-red-400 text-center mt-4">
+Email ou senha inválidos
+</p>
+
+<button
+id="voltarLogin"
+class="mt-6 text-slate-300 w-full">
+← Voltar
+</button>
+
+</div>
+</div>
+
+
+<!-- CADASTRO -->
+<div id="cadastro"
+class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-900 to-violet-900">
+
+<div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[30px] shadow-2xl p-8">
+
+<h2 class="text-3xl font-bold text-white text-center mb-8">
+Criar Conta
+</h2>
+
+<input
+id="cadUsuario"
+placeholder="Nome"
+class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white"
+/>
+
+<input
+id="cadEmail"
+placeholder="Email"
+class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white"
+/>
+
+<input
+id="cadSenha"
+type="password"
+placeholder="Senha"
+class="w-full mb-5 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white"
+/>
+
+<button
+id="fazerCadastro"
+class="w-full bg-violet-600 hover:bg-violet-700 py-4 rounded-2xl font-bold text-white">
+Cadastrar
+</button>
+
+<p id="cadSucesso"
+class="hidden text-green-400 text-center mt-4">
+Cadastro realizado com sucesso
+</p>
+
+<button
+id="voltarCadastro"
+class="mt-6 text-slate-300 w-full">
+← Voltar
+</button>
+
+</div>
+</div>
+
+<!-- PERFIL DRAWER -->
+<!-- PERFIL DRAWER -->
+<div id="perfilDrawer" class="fixed inset-0 bg-black/50 hidden z-50">
+<div onclick="fecharPerfil()" class="absolute inset-0"></div>
+
+<div id="drawerBox"
+class="absolute right-0 top-0 h-full w-full md:w-[500px]
+bg-slate-50 shadow-2xl
+translate-x-full transition-transform duration-500
+overflow-y-auto">
+
+<!-- HEADER -->
+<div class="bg-gradient-to-br from-indigo-600 via-violet-700 to-purple-800 p-8 text-white relative">
+
+<button onclick="fecharPerfil()"
+class="absolute top-5 right-5 bg-white/20 hover:bg-white/30
+px-4 py-2 rounded-2xl">
 ✕
 </button>
 
 <div class="flex items-center gap-5">
 
-<img 
+<img
 id="perfilFoto"
-class="w-24 h-24 rounded-3xl border-4 border-white shadow-lg object-cover"
+class="w-24 h-24 rounded-3xl border-4 border-white shadow-xl object-cover"
 />
 
 <div>
-<h2 id="perfilNome" class="text-3xl font-bold"></h2>
 
-<p id="perfilArea" class="opacity-90"></p>
+<h2 id="perfilNome"
+class="text-3xl font-bold">
+</h2>
 
-<p id="perfilCidade" class="text-green-100"></p>
+<p id="perfilArea"
+class="text-indigo-100">
+</p>
 
-<div class="mt-3 flex gap-2 flex-wrap">
-<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+<p id="perfilCidade"
+class="text-indigo-200 text-sm">
+</p>
+
+<div class="mt-4 flex gap-3 flex-wrap">
+
+<span class="bg-white/20 px-4 py-2 rounded-full text-sm">
 ⭐ <span id="perfilRating"></span>
 </span>
 
-<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+<span class="bg-white/20 px-4 py-2 rounded-full text-sm">
 R$ <span id="perfilValor"></span>/h
 </span>
 
-<span class="bg-white/20 px-3 py-1 rounded-full text-sm">
+<span class="bg-white/20 px-4 py-2 rounded-full text-sm">
 <span id="perfilIdade"></span> anos
 </span>
-</div>
 
 </div>
 
 </div>
 </div>
 
+</div>
 
-<!-- conteúdo -->
-<div class="p-6 space-y-6">
 
-<!-- cards métricas -->
+<!-- CONTEÚDO -->
+<div class="p-6 space-y-7">
+
+
+<!-- MÉTRICAS -->
 <div class="grid grid-cols-3 gap-4">
 
-<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
-<p class="text-xl font-bold text-green-700">96%</p>
-<p class="text-xs text-gray-500">Sucesso</p>
-</div>
+<div class="bg-white rounded-3xl p-5 text-center shadow-md">
+<p class="text-2xl font-bold text-indigo-600">
+96%
+</p>
 
-<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
-<p class="text-xl font-bold text-green-700">42</p>
-<p class="text-xs text-gray-500">Projetos</p>
-</div>
-
-<div class="bg-gray-50 rounded-2xl p-4 text-center shadow-sm">
-<p class="text-xl font-bold text-green-700">1h</p>
-<p class="text-xs text-gray-500">Resposta</p>
-</div>
-
-</div>
-
-
-<!-- sobre -->
-<div>
-<h3 class="font-bold text-lg mb-3">
-Sobre o profissional
-</h3>
-
-<p id="perfilBio"
-class="text-gray-600 leading-relaxed">
+<p class="text-xs text-gray-500">
+Taxa sucesso
 </p>
 </div>
 
 
-<!-- skills -->
-<div>
-<h3 class="font-bold text-lg mb-3">
+<div class="bg-white rounded-3xl p-5 text-center shadow-md">
+<p class="text-2xl font-bold text-indigo-600">
+42
+</p>
+
+<p class="text-xs text-gray-500">
+Projetos
+</p>
+</div>
+
+
+<div class="bg-white rounded-3xl p-5 text-center shadow-md">
+<p class="text-2xl font-bold text-indigo-600">
+1h
+</p>
+
+<p class="text-xs text-gray-500">
+Resposta
+</p>
+</div>
+
+</div>
+
+
+<!-- SOBRE -->
+<div class="bg-white rounded-3xl p-6 shadow-md">
+
+<h3 class="font-bold text-lg mb-4">
+Sobre o profissional
+</h3>
+
+<p id="perfilBio"
+class="text-slate-600 leading-relaxed">
+</p>
+
+</div>
+
+
+
+<!-- SKILLS -->
+<div class="bg-white rounded-3xl p-6 shadow-md">
+
+<h3 class="font-bold text-lg mb-4">
 Especialidades
 </h3>
 
-<div class="flex flex-wrap gap-2">
-<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+<div class="flex flex-wrap gap-3">
+
+<span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
 Suporte
 </span>
 
-<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+<span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
 Infraestrutura
 </span>
 
-<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+<span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
 Windows
 </span>
 
-<span class="bg-green-100 text-green-700 px-3 py-2 rounded-xl">
+<span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
 Redes
 </span>
-</div>
+
+<span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+Cloud
+</span>
 
 </div>
 
+</div>
 
-<!-- avaliações -->
-<div>
 
-<h3 class="font-bold text-lg mb-3">
-Avaliar profissional
+
+<!-- AVALIAÇÕES -->
+<div class="bg-white rounded-3xl p-6 shadow-md">
+
+<h3 class="font-bold text-lg mb-4">
+Avaliações
 </h3>
 
-<select id="notaInput"
-class="border rounded-xl px-4 py-2 mb-3 w-full">
-<option value="5">⭐ 5 estrelas</option>
-<option value="4">⭐ 4 estrelas</option>
-<option value="3">⭐ 3 estrelas</option>
-<option value="2">⭐ 2 estrelas</option>
-<option value="1">⭐ 1 estrela</option>
+<select
+id="notaInput"
+class="border rounded-xl px-4 py-3 mb-4 w-full">
+
+<option value="5">
+⭐ 5 estrelas
+</option>
+
+<option value="4">
+⭐ 4 estrelas
+</option>
+
+<option value="3">
+⭐ 3 estrelas
+</option>
+
+<option value="2">
+⭐ 2 estrelas
+</option>
+
+<option value="1">
+⭐ 1 estrela
+</option>
+
 </select>
 
 
 <textarea
 id="comentarioInput"
 placeholder="Escreva sua avaliação..."
-class="w-full border rounded-2xl p-4 mb-3">
+class="w-full border rounded-2xl p-4 mb-4">
 </textarea>
+
 
 <button
 id="btnAvaliar"
-class="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-2xl">
+class="w-full bg-indigo-600 hover:bg-indigo-700
+text-white py-3 rounded-2xl">
 Enviar avaliação
 </button>
 
+
+<!-- LISTA DAS AVALIAÇÕES -->
 <div id="listaAvaliacoes"
-class="mt-5 space-y-3">
+class="mt-6 space-y-4">
+
+<div class="border rounded-2xl p-4">
+<p class="font-semibold">
+Carlos Mendes
+</p>
+
+<p class="text-yellow-500 text-sm">
+⭐⭐⭐⭐⭐
+</p>
+
+<p class="text-sm text-gray-500 mt-2">
+Excelente profissional, resolveu meu problema em minutos.
+</p>
 </div>
 
-</div>
 
+<div class="border rounded-2xl p-4">
+<p class="font-semibold">
+Fernanda Lima
+</p>
 
-<!-- CTA -->
-<button
-id="btnChatPerfil"
-class="w-full bg-green-700 hover:bg-green-800 text-white py-4 rounded-2xl text-lg shadow-lg">
-Entrar em contato
-</button>
+<p class="text-yellow-500 text-sm">
+⭐⭐⭐⭐
+</p>
 
-
-</div>
-</div>
-</div>
-
-<!-- MODAL TECNICO -->
-<div id="modalTecnico" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-  <div class="bg-white p-6 rounded-xl w-80 relative">
-    
-    <button id="fecharModal" class="absolute top-2 right-2 text-gray-500">
-      ✖
-    </button>
-
-    <h2 id="modalNome" class="text-xl font-bold mb-2"></h2>
-    <p id="modalArea" class="text-green-800"></p>
-    <p id="modalCidade" class="text-gray-500"></p>
-    <p id="modalRating" class="text-yellow-500 mb-4"></p>
-
-    <button class="bg-green-800 text-white w-full py-2 rounded">
-      Entrar em contato
-    </button>
-  </div>
-</div>
-
-  <!-- CHAT -->
-<div id="chatBox"
-class="fixed bottom-6 right-6 w-[380px] h-[560px]
-bg-white rounded-3xl shadow-2xl overflow-hidden
-hidden z-50 border border-gray-200
-flex flex-col translate-x-full transition-all duration-300">
-
-<!-- HEADER -->
-<div class="bg-gradient-to-r from-green-600 to-green-800 text-white p-4">
-
-<div class="flex justify-between items-center">
-
-<div class="flex items-center gap-3">
-
-<img id="chatAvatar"
-src=""
-class="w-12 h-12 rounded-full border-2 border-white object-cover">
-
-<div>
-<h3 id="chatNome" class="font-bold"></h3>
-
-<p id="chatArea" class="text-xs text-green-100"></p>
-
-<p class="text-[11px] text-green-200">
-● Online agora
+<p class="text-sm text-gray-500 mt-2">
+Muito bom atendimento e suporte rápido.
 </p>
 </div>
 
 </div>
 
-<button 
-onclick="fecharChat()"
-class="bg-white/20 px-3 py-2 rounded-xl">
-✕
+</div>
+
+
+
+<!-- CTA -->
+<button
+id="btnChatPerfil"
+class="w-full bg-gradient-to-r from-indigo-600 to-violet-700
+hover:scale-[1.02]
+text-white py-4 rounded-2xl text-lg shadow-xl transition">
+Entrar em contato
 </button>
 
-</div>
 
 </div>
 
-
-<!-- mensagens -->
-<div id="chatMensagens"
-class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3">
+</div>
 </div>
 
-<!-- digitando -->
-<div id="digitando"
-class="hidden px-4 pb-2 text-xs text-gray-400">
-Técnico está digitando...
+
+<!-- CHAT -->
+<div id="chatBox"
+class="fixed bottom-6 right-6 w-[380px] h-[560px] bg-white rounded-3xl shadow-2xl overflow-hidden hidden z-50 border border-gray-200 flex flex-col translate-x-full transition-all duration-300">
+
+<div class="bg-gradient-to-r from-indigo-600 to-violet-700 text-white p-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<img id="chatAvatar" src="" class="w-12 h-12 rounded-full border-2 border-white object-cover">
+<div>
+<h3 id="chatNome" class="font-bold"></h3>
+<p id="chatArea" class="text-xs text-indigo-100"></p>
+<p class="text-[11px] text-indigo-200">● Online agora</p>
+</div>
+</div>
+<button onclick="fecharChat()" class="bg-white/20 px-3 py-2 rounded-xl">✕</button>
+</div>
 </div>
 
-<!-- INPUT -->
+<div id="chatMensagens" class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3"></div>
+<div id="digitando" class="hidden px-4 pb-2 text-xs text-gray-400">Técnico está digitando...</div>
+
 <div class="border-t p-3 bg-white">
-
 <div class="flex items-center gap-2">
-
-<input
-id="chatInput"
+<input id="chatInput"
 placeholder="Digite sua mensagem..."
-class="flex-1 bg-gray-100 rounded-full px-5 py-3
-outline-none focus:ring-2 focus:ring-green-500"
-/>
+class="flex-1 bg-gray-100 rounded-full px-5 py-3 outline-none focus:ring-2 focus:ring-indigo-500"/>
 
-<button
-onclick="enviarMensagem()"
-class="w-12 h-12 rounded-full
-bg-green-700 hover:bg-green-800
-text-white shadow-lg">
+<button onclick="enviarMensagem()"
+class="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg">
 ➤
 </button>
-
+</div>
 </div>
 
 </div>
 
+<div id="perfilUsuario" class="hidden min-h-screen bg-slate-100">
+
+<header class="bg-white shadow p-6 flex justify-between items-center">
+  <h2 class="text-2xl font-bold">Meu Perfil</h2>
+
+  <button id="voltarPerfilUsuario"
+  class="px-4 py-2 rounded-xl border">
+  ← Voltar
+  </button>
+</header>
+
+<section class="max-w-4xl mx-auto p-8">
+
+<div class="bg-white rounded-3xl shadow-xl p-8">
+
+<div class="flex flex-col md:flex-row gap-8 items-center">
+
+<div
+class="w-32 h-32 rounded-full bg-indigo-600 text-white flex items-center justify-center text-4xl font-bold"
+id="perfilInicial">
+L
+</div>
+
+<div class="flex-1">
+<h3 id="perfilUserNome" class="text-3xl font-bold"></h3>
+<p id="perfilUserEmail" class="text-slate-500 mt-2"></p>
+<p class="mt-4 text-slate-600">
+Membro da plataforma TechConnect.
+</p>
+</div>
+
+</div>
+
+<hr class="my-8">
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<div>
+<label class="font-semibold">Nome</label>
+<input id="editarNome"
+class="w-full mt-2 border rounded-xl p-3">
+</div>
+
+<div>
+<label class="font-semibold">Email</label>
+<input id="editarEmail"
+class="w-full mt-2 border rounded-xl p-3">
+</div>
+
+</div>
+
+<button id="salvarPerfilUsuario"
+class="mt-8 bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-2xl">
+Salvar alterações
+</button>
+
+<p id="perfilSalvo"
+class="hidden mt-4 text-green-600 font-semibold">
+Perfil atualizado com sucesso
+</p>
+
+</div>
+
+</section>
 </div>
 
 <script src="./script/app.js"></script>
@@ -526,5 +680,4 @@ text-white shadow-lg">
 <script src="./script/avaliacoes.js"></script>
 
 </body>
-
 </html>
