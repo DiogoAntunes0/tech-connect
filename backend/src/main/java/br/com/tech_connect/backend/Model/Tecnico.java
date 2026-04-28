@@ -9,14 +9,14 @@ public class Tecnico extends Usuario {
     private String cidade;
     private Date dataNascimento;
     private Double valorHora;
-    private List<Double> avaliacoes;
+    private List<Double> avaliacoesRecebidas;
     private String biografia;
     //foto
 
-    public Tecnico(long id, boolean lembrarMe, String nome, String senha, Enum tipousuario, String area, List<Double> avaliacoes, String biografia, String cidade, Date dataNascimento, Double valorHora) {
+    public Tecnico(long id, boolean lembrarMe, String nome, String senha, Enum tipousuario, String area, List<Double> avaliacoesRecebidas, String biografia, String cidade, Date dataNascimento, Double valorHora) {
         super(id, lembrarMe, nome, senha, tipousuario);
         this.area = area;
-        this.avaliacoes = avaliacoes;
+        this.avaliacoesRecebidas = avaliacoesRecebidas;
         this.biografia = biografia;
         this.cidade = cidade;
         this.dataNascimento = dataNascimento;
@@ -28,7 +28,7 @@ public class Tecnico extends Usuario {
     }
 
     public List<Double> getAvaliacoes() {
-        return avaliacoes;
+        return avaliacoesRecebidas;
     }
 
     public String getBiografia() {
