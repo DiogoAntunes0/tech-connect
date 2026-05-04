@@ -252,7 +252,7 @@ githubLogin.onclick = () => {
 
 /* ------- SESSÃO PERSISTENTE ------- */
 
-window.onload = () => {
+function iniciarSessaoPersistente() {
 
     const logado = localStorage.getItem("logado");
     const user = getUser();
@@ -260,4 +260,6 @@ window.onload = () => {
     if (logado && user) {
         loginUser(user);
     }
-};
+}
+
+iniciarSessaoPersistente();

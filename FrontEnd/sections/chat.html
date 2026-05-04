@@ -1,0 +1,34 @@
+﻿<!-- CHAT -->
+  <div id="chatBox"
+    class="fixed bottom-6 right-6 w-[380px] h-[560px] bg-white rounded-3xl shadow-2xl overflow-hidden hidden z-50 border border-gray-200 flex flex-col translate-x-full transition-all duration-300">
+
+    <div class="bg-gradient-to-r from-indigo-600 to-violet-700 text-white p-4">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <img id="chatAvatar" src="" class="w-12 h-12 rounded-full border-2 border-white object-cover">
+          <div>
+            <h3 id="chatNome" class="font-bold"></h3>
+            <p id="chatArea" class="text-xs text-indigo-100"></p>
+            <p class="text-[11px] text-indigo-200">● Online agora</p>
+          </div>
+        </div>
+        <button onclick="fecharChat()" class="bg-white/20 px-3 py-2 rounded-xl">✕</button>
+      </div>
+    </div>
+
+    <div id="chatMensagens" class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3"></div>
+    <div id="digitando" class="hidden px-4 pb-2 text-xs text-gray-400">Técnico está digitando...</div>
+
+    <div class="border-t p-3 bg-white">
+      <div class="flex items-center gap-2">
+        <input id="chatInput" placeholder="Digite sua mensagem..."
+          class="flex-1 bg-gray-100 rounded-full px-5 py-3 outline-none focus:ring-2 focus:ring-indigo-500" />
+
+        <button onclick="enviarMensagem()"
+          class="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg">
+          ➤
+        </button>
+      </div>
+    </div>
+
+  </div>

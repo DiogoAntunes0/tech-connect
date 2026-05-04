@@ -205,9 +205,7 @@ function enviarMensagem() {
 
 
 /* ========= ENTER ========= */
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+function iniciarEventosChat() {
 
         const input =
             document.getElementById("chatInput");
@@ -245,4 +243,6 @@ document.addEventListener(
 
         }
 
-    });
+}
+
+iniciarEventosChat();

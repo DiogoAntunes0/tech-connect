@@ -1,0 +1,243 @@
+﻿<!-- PERFIL DRAWER -->
+  <!-- PERFIL DRAWER -->
+  <div id="perfilDrawer" class="fixed inset-0 bg-black/50 hidden z-50">
+    <div onclick="fecharPerfil()" class="absolute inset-0"></div>
+
+    <div id="drawerBox" class="absolute right-0 top-0 h-full w-full md:w-[500px]
+bg-slate-50 shadow-2xl
+translate-x-full transition-transform duration-500
+overflow-y-auto">
+
+      <!-- HEADER -->
+      <div class="bg-gradient-to-br from-indigo-600 via-violet-700 to-purple-800 p-8 text-white relative">
+
+        <button onclick="fecharPerfil()" class="absolute top-5 right-5 bg-white/20 hover:bg-white/30
+px-4 py-2 rounded-2xl">
+          ✕
+        </button>
+
+        <div class="flex items-center gap-5">
+
+          <img id="perfilFoto" class="w-24 h-24 rounded-3xl border-4 border-white shadow-xl object-cover" />
+
+          <div>
+
+            <h2 id="perfilNome" class="text-3xl font-bold">
+            </h2>
+
+            <p id="perfilArea" class="text-indigo-100">
+            </p>
+
+            <p id="perfilCidade" class="text-indigo-200 text-sm">
+            </p>
+
+            <div class="mt-4 flex gap-3 flex-wrap">
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                ⭐ <span id="perfilRating"></span>
+              </span>
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                R$ <span id="perfilValor"></span>/h
+              </span>
+
+              <span class="bg-white/20 px-4 py-2 rounded-full text-sm">
+                <span id="perfilIdade"></span> anos
+              </span>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <!-- CONTEÚDO -->
+      <div class="p-6 space-y-7">
+
+
+        <!-- MÉTRICAS -->
+        <div class="grid grid-cols-3 gap-4">
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              96%
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Taxa sucesso
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              42
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Projetos
+            </p>
+          </div>
+
+
+          <div class="bg-white rounded-3xl p-5 text-center shadow-md">
+            <p class="text-2xl font-bold text-indigo-600">
+              1h
+            </p>
+
+            <p class="text-xs text-gray-500">
+              Resposta
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- SOBRE -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Sobre o profissional
+          </h3>
+
+          <p id="perfilBio" class="text-slate-600 leading-relaxed">
+          </p>
+
+        </div>
+
+
+
+        <!-- SKILLS -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Especialidades
+          </h3>
+
+          <div class="flex flex-wrap gap-3">
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Suporte
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Infraestrutura
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Windows
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Redes
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Cloud
+            </span>
+
+            <span class="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-xl">
+              Desenvolvimento
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- AVALIAÇÕES -->
+        <div class="bg-white rounded-3xl p-6 shadow-md">
+
+          <h3 class="font-bold text-lg mb-4">
+            Avaliações
+          </h3>
+
+          <select id="notaInput" class="border rounded-xl px-4 py-3 mb-4 w-full">
+
+            <option value="5">
+              ⭐ 5 estrelas
+            </option>
+
+            <option value="4">
+              ⭐ 4 estrelas
+            </option>
+
+            <option value="3">
+              ⭐ 3 estrelas
+            </option>
+
+            <option value="2">
+              ⭐ 2 estrelas
+            </option>
+
+            <option value="1">
+              ⭐ 1 estrela
+            </option>
+
+          </select>
+
+
+          <textarea id="comentarioInput" placeholder="Escreva sua avaliação..."
+            class="w-full border rounded-2xl p-4 mb-4">
+</textarea>
+
+
+          <button id="btnAvaliar" class="w-full bg-indigo-600 hover:bg-indigo-700
+text-white py-3 rounded-2xl">
+            Enviar avaliação
+          </button>
+
+
+          <!-- LISTA DAS AVALIAÇÕES -->
+          <div id="listaAvaliacoes" class="mt-6 space-y-4">
+
+            <div class="border rounded-2xl p-4">
+              <p class="font-semibold">
+                Carlos Mendes
+              </p>
+
+              <p class="text-yellow-500 text-sm">
+                ⭐⭐⭐⭐⭐
+              </p>
+
+              <p class="text-sm text-gray-500 mt-2">
+                Excelente profissional, resolveu meu problema em minutos.
+              </p>
+            </div>
+
+
+            <div class="border rounded-2xl p-4">
+              <p class="font-semibold">
+                Fernanda Lima
+              </p>
+
+              <p class="text-yellow-500 text-sm">
+                ⭐⭐⭐⭐
+              </p>
+
+              <p class="text-sm text-gray-500 mt-2">
+                Muito bom atendimento e suporte rápido.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- CTA -->
+        <button id="btnChatPerfil" class="w-full bg-gradient-to-r from-indigo-600 to-violet-700
+hover:scale-[1.02]
+text-white py-4 rounded-2xl text-lg shadow-xl transition">
+          Entrar em contato
+        </button>
+
+
+      </div>
+
+    </div>
+  </div>
