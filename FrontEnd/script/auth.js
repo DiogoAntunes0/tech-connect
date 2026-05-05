@@ -1,11 +1,10 @@
 /* ----------- TELAS ----------- */
 
 function showScreen(tela) {
-
     const telas = ["home", "login", "cadastro", "perfilUsuario"];
 
     telas.forEach(id => {
-        let el = document.getElementById(id);
+        const el = document.getElementById(id);
         if (el) {
             el.classList.add("hidden");
             el.classList.remove("flex");
@@ -17,13 +16,13 @@ function showScreen(tela) {
     }
 
     if (tela === "login") {
-        let login = document.getElementById("login");
+        const login = document.getElementById("login");
         login.classList.remove("hidden");
         login.classList.add("flex");
     }
 
     if (tela === "cadastro") {
-        let cadastro = document.getElementById("cadastro");
+        const cadastro = document.getElementById("cadastro");
         cadastro.classList.remove("hidden");
         cadastro.classList.add("flex");
     }
@@ -48,14 +47,11 @@ function setUser(user) {
 /* ---------- LOGIN ---------- */
 
 function loginUser(user) {
-
     localStorage.setItem("logado", "true");
 
-    /* Nome no topo */
     document.getElementById("userEmail").innerText =
         user.usuario || user.nome || user.email;
 
-    /* Avatar */
     const avatarLetra = document.getElementById("userAvatar");
     const avatarImg = document.getElementById("userAvatarImg");
 
@@ -90,14 +86,22 @@ voltarPerfilUsuario.onclick = () => showScreen("home");
 /* ---------- CADASTRO ---------- */
 
 fazerCadastro.onclick = () => {
-
-    const usuario = cadUsuario.value;
-    const email = cadEmail.value;
+    const usuario = cadUsuario.value.trim();
+    const email = cadEmail.value.trim();
     const senha = cadSenha.value;
 
     if (!usuario || !email || !senha) return;
 
-    setUser({ usuario, email, senha });
+    setUser({
+        usuario,
+        email,
+        senha,
+        idade: "",
+        valorHora: "",
+        bio: "",
+        especialidades: "",
+        projetos: ""
+    });
 
     cadSucesso.classList.remove("hidden");
 
@@ -110,12 +114,12 @@ fazerCadastro.onclick = () => {
 /* ---------- LOGIN ---------- */
 
 fazerLogin.onclick = () => {
-
-    const email = loginEmail.value;
+    const email = loginEmail.value.trim();
     const senha = loginSenha.value;
     const user = getUser();
 
     if (user && user.email === email && user.senha === senha) {
+        loginErro.classList.add("hidden");
         loginUser(user);
     } else {
         loginErro.classList.remove("hidden");
@@ -126,7 +130,6 @@ fazerLogin.onclick = () => {
 /* ---------- LOGOUT ---------- */
 
 btnLogout.onclick = () => {
-
     localStorage.removeItem("logado");
 
     document.getElementById("userArea").classList.add("hidden");
@@ -139,23 +142,26 @@ btnLogout.onclick = () => {
 /* -------- PERFIL DO USUÁRIO -------- */
 
 btnMeuPerfil.onclick = () => {
-
     const user = getUser();
     if (!user) return;
 
     perfilUserNome.innerText = user.usuario;
     perfilUserEmail.innerText = user.email;
 
-    editarNome.value = user.usuario;
-    editarEmail.value = user.email;
+    editarNome.value = user.usuario || "";
+    editarEmail.value = user.email || "";
     editarBio.value = user.bio || "";
+    editarIdade.value = user.idade || "";
+    editarValorHora.value = user.valorHora || "";
+    editarEspecialidades.value = user.especialidades || "";
+    editarProjetos.value = user.projetos || "";
 
     if (user.foto) {
         previewFoto.src = user.foto;
         previewFoto.classList.remove("hidden");
         perfilInicial.classList.add("hidden");
     } else {
-        perfilInicial.innerText = user.usuario.charAt(0).toUpperCase();
+        perfilInicial.innerText = (user.usuario || "U").charAt(0).toUpperCase();
         previewFoto.classList.add("hidden");
         perfilInicial.classList.remove("hidden");
     }
@@ -167,17 +173,22 @@ btnMeuPerfil.onclick = () => {
 /* -------- SALVAR PERFIL -------- */
 
 salvarPerfilUsuario.onclick = () => {
+    const user = getUser();
+    if (!user) return;
 
-    let user = getUser();
-
-    user.usuario = editarNome.value;
-    user.email = editarEmail.value;
-    user.bio = editarBio.value;
+    user.usuario = editarNome.value.trim();
+    user.email = editarEmail.value.trim();
+    user.bio = editarBio.value.trim();
+    user.idade = editarIdade.value;
+    user.valorHora = editarValorHora.value;
+    user.especialidades = editarEspecialidades.value.trim();
+    user.projetos = editarProjetos.value.trim();
 
     setUser(user);
 
-    /* Atualiza topo */
     userEmail.innerText = user.usuario;
+    perfilUserNome.innerText = user.usuario;
+    perfilUserEmail.innerText = user.email;
 
     const avatarLetra = document.getElementById("userAvatar");
     const avatarImg = document.getElementById("userAvatarImg");
@@ -187,7 +198,7 @@ salvarPerfilUsuario.onclick = () => {
         avatarImg.classList.remove("hidden");
         avatarLetra.classList.add("hidden");
     } else {
-        avatarLetra.innerText = user.usuario.charAt(0).toUpperCase();
+        avatarLetra.innerText = (user.usuario || "U").charAt(0).toUpperCase();
         avatarImg.classList.add("hidden");
         avatarLetra.classList.remove("hidden");
     }
@@ -203,21 +214,20 @@ salvarPerfilUsuario.onclick = () => {
 /* -------- FOTO -------- */
 
 inputFoto.onchange = (e) => {
-
     const file = e.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
 
     reader.onload = function (event) {
-
         previewFoto.src = event.target.result;
         previewFoto.classList.remove("hidden");
         perfilInicial.classList.add("hidden");
 
-        let user = getUser();
-        user.foto = event.target.result;
+        const user = getUser();
+        if (!user) return;
 
+        user.foto = event.target.result;
         setUser(user);
     };
 
@@ -228,10 +238,14 @@ inputFoto.onchange = (e) => {
 /* ------- LOGIN SOCIAL (DEMO) ------- */
 
 googleLogin.onclick = () => {
-
-    let user = {
+    const user = {
         usuario: "Usuário Google",
-        email: "google@usuario.com"
+        email: "google@usuario.com",
+        idade: "",
+        valorHora: "",
+        bio: "",
+        especialidades: "",
+        projetos: ""
     };
 
     setUser(user);
@@ -239,10 +253,14 @@ googleLogin.onclick = () => {
 };
 
 githubLogin.onclick = () => {
-
-    let user = {
+    const user = {
         usuario: "Usuário GitHub",
-        email: "github@usuario.com"
+        email: "github@usuario.com",
+        idade: "",
+        valorHora: "",
+        bio: "",
+        especialidades: "",
+        projetos: ""
     };
 
     setUser(user);
@@ -253,7 +271,6 @@ githubLogin.onclick = () => {
 /* ------- SESSÃO PERSISTENTE ------- */
 
 function iniciarSessaoPersistente() {
-
     const logado = localStorage.getItem("logado");
     const user = getUser();
 

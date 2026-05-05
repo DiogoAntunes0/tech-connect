@@ -1,183 +1,251 @@
-﻿<!-- ================= HOME ================= -->
-  <div id="home">
+<!-- ================= HOME ================= -->
+<div id="home">
 
-    <header class="bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm sticky top-0 z-50">
-      <nav class="container mx-auto flex justify-between items-center p-5">
+  <header class="site-header bg-white/95 backdrop-blur-xl border-b border-slate-200 shadow-sm sticky top-0 z-50">
+    <nav class="container mx-auto flex flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
 
-        <div class="flex items-center gap-3">
-          <span class="text-xl font-bold text-slate-800">TechConnect</span>
+      <a href="#inicio" class="flex items-center gap-3">
+        <span class="text-xl font-bold text-slate-900">TechConnect</span>
+      </a>
+
+      <div class="flex flex-wrap items-center gap-3 text-sm font-semibold text-slate-600 lg:justify-center">
+        <a href="#inicio" class="nav-link hover:text-indigo-700 transition">Início</a>
+        <a href="#sobre" class="nav-link hover:text-indigo-700 transition">Sobre</a>
+        <a href="#tecnicos" class="nav-link hover:text-indigo-700 transition">Técnicos</a>
+        <a href="#depoimentos" class="nav-link hover:text-indigo-700 transition">Depoimentos</a>
+        <a href="#contato" class="nav-link hover:text-indigo-700 transition">Contato</a>
+      </div>
+
+      <div id="navButtons" class="flex gap-3">
+        <button id="btnLogin"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl shadow-md transition">
+          Entrar
+        </button>
+
+        <button id="btnCadastro"
+          class="border border-slate-300 px-5 py-2.5 rounded-xl text-slate-700 hover:bg-slate-100 transition">
+          Cadastrar
+        </button>
+      </div>
+
+      <div id="userArea" class="hidden flex flex-wrap gap-3 items-center">
+
+        <button id="btnMeuPerfil"
+          class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-2 rounded-xl shadow hover:bg-slate-50 transition">
+
+          <div class="w-10 h-10 relative">
+            <img id="userAvatarImg" alt="Foto do usuário"
+              class="w-10 h-10 rounded-full object-cover hidden">
+
+            <div id="userAvatar"
+              class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+              U
+            </div>
+          </div>
+
+          <div class="text-left">
+            <p class="text-xs text-slate-400">Olá,</p>
+            <p id="userEmail" class="font-semibold text-slate-800"></p>
+          </div>
+
+        </button>
+
+        <button id="btnLogout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl transition">
+          Sair
+        </button>
+
+      </div>
+
+    </nav>
+  </header>
+
+
+  <section id="inicio" class="section-anchor bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-white relative overflow-hidden">
+    <div class="container mx-auto px-6 py-20 lg:py-28 grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+
+      <div>
+        <span class="inline-flex bg-white/10 border border-white/20 px-5 py-2 rounded-full text-sm">
+          Marketplace de técnicos de TI verificados
+        </span>
+
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mt-8 mb-6">
+          Encontre técnicos qualificados para resolver problemas de tecnologia com rapidez
+        </h1>
+
+        <p class="text-slate-300 text-lg leading-relaxed mb-8 max-w-2xl">
+          A TechConnect conecta clientes a profissionais de suporte técnico, redes, infraestrutura, cloud e desenvolvimento. Compare perfis, avalie experiências reais e fale direto com o especialista ideal.
+        </p>
+
+        <div class="flex flex-col sm:flex-row bg-white rounded-2xl overflow-hidden shadow-2xl w-full max-w-2xl">
+          <input id="searchInput" placeholder="Busque por suporte, redes, cloud ou desenvolvimento"
+            aria-label="Buscar técnicos por especialidade"
+            class="flex-1 px-6 py-5 text-slate-700 outline-none" />
+
+          <button id="btnBuscar" class="bg-indigo-600 hover:bg-indigo-700 px-8 py-5 font-semibold transition">
+            Buscar técnico
+          </button>
         </div>
 
-        <div id="navButtons" class="flex gap-4">
-          <button id="btnLogin"
-            class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-2xl shadow-lg transition">
-            Entrar
-          </button>
+        <div class="grid grid-cols-3 gap-6 mt-10 max-w-xl">
+          <div>
+            <p class="text-3xl font-bold">1.2k+</p>
+            <p class="text-slate-400 text-sm">Profissionais</p>
+          </div>
 
-          <button id="btnCadastro"
-            class="border border-slate-300 px-5 py-2 rounded-2xl text-slate-700 hover:bg-slate-100 transition">
-            Cadastrar
-          </button>
+          <div>
+            <p class="text-3xl font-bold">98%</p>
+            <p class="text-slate-400 text-sm">Satisfação</p>
+          </div>
+
+          <div>
+            <p class="text-3xl font-bold">24/7</p>
+            <p class="text-slate-400 text-sm">Solicitações</p>
+          </div>
         </div>
+      </div>
 
-        <div id="userArea" class="hidden flex gap-4 items-center">
 
-          <button id="btnMeuPerfil"
-            class="flex items-center gap-3 bg-white border border-slate-200 px-4 py-2 rounded-2xl shadow hover:bg-slate-50 transition">
+      <div class="hidden lg:block">
+        <div class="bg-white/10 backdrop-blur-xl p-7 rounded-3xl shadow-2xl border border-white/10">
+          <p class="text-slate-300 mb-5">Profissional em destaque</p>
 
-            <div class="w-10 h-10 relative">
+          <div class="bg-white text-slate-800 p-6 rounded-2xl">
+            <div class="flex gap-4 items-center mb-5">
+              <img src="https://i.pravatar.cc/150?img=5" alt="Foto de técnica especialista em redes"
+                class="h-16 w-16 rounded-2xl object-cover">
+              <div>
+                <h3 class="font-bold text-xl">Mariana Costa</h3>
+                <p class="text-slate-500">Redes e Infraestrutura</p>
+              </div>
+            </div>
 
-  <img id="userAvatarImg"
-  class="w-10 h-10 rounded-full object-cover hidden">
+            <div class="grid grid-cols-3 gap-4 text-center">
+              <div class="bg-slate-50 rounded-xl p-3">
+                <p class="font-bold">64</p>
+                <p class="text-xs text-slate-500">Projetos</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-3">
+                <p class="font-bold">4.9</p>
+                <p class="text-xs text-slate-500">Avaliação</p>
+              </div>
+              <div class="bg-slate-50 rounded-xl p-3">
+                <p class="font-bold">R$200</p>
+                <p class="text-xs text-slate-500">Hora</p>
+              </div>
+            </div>
 
-  <div id="userAvatar"
-  class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
-  U
-  </div>
+            <a href="#tecnicos"
+              class="block text-center w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl transition">
+              Ver técnicos disponíveis
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="sobre" class="section-anchor bg-slate-50 py-20">
+    <div class="container mx-auto px-6 grid lg:grid-cols-[.9fr_1.1fr] gap-12 items-start">
+      <div>
+        <p class="text-indigo-600 font-semibold mb-3">Sobre a TechConnect</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-5">
+          Contratação de técnicos mais simples, transparente e confiável
+        </h2>
+        <p class="text-slate-600 leading-relaxed">
+          A plataforma reúne profissionais de tecnologia com experiência prática para atendimentos remotos ou presenciais. O cliente encontra especialistas por área, consulta avaliações, compara valores por hora e inicia o contato sem burocracia.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-5">
+        <article class="feature-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div class="icon-badge">01</div>
+          <h3 class="font-bold text-lg text-slate-900 mt-4 mb-2">Perfis claros</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Informações de preço, experiência, biografia e avaliações organizadas para uma decisão rápida.</p>
+        </article>
+
+        <article class="feature-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div class="icon-badge">02</div>
+          <h3 class="font-bold text-lg text-slate-900 mt-4 mb-2">Contato direto</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Converse com o técnico, explique a demanda e alinhe os próximos passos dentro da própria interface.</p>
+        </article>
+
+        <article class="feature-card bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div class="icon-badge">03</div>
+          <h3 class="font-bold text-lg text-slate-900 mt-4 mb-2">Especialistas reais</h3>
+          <p class="text-slate-500 text-sm leading-relaxed">Profissionais de suporte, redes, infraestrutura, cloud e desenvolvimento para diferentes níveis de urgência.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="tecnicos" class="section-anchor container mx-auto py-20 px-6">
+    <div class="flex flex-col gap-4 md:flex-row md:justify-between md:items-end mb-10">
+      <div>
+        <p class="text-indigo-600 font-semibold mb-2">Técnicos disponíveis</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Especialistas prontos para ajudar</h2>
+      </div>
+      <span class="text-sm text-slate-500">Resultados atualizados conforme sua busca</span>
+    </div>
+
+    <div id="listaTecnicos" class="grid md:grid-cols-2 xl:grid-cols-3 gap-6"></div>
+  </section>
+
+
+  <section id="depoimentos" class="section-anchor bg-white py-20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mb-10">
+        <p class="text-indigo-600 font-semibold mb-2">Depoimentos</p>
+        <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Clientes que resolveram demandas com mais segurança</h2>
+        <p class="text-slate-600 leading-relaxed">Avaliações ajudam novos clientes a escolherem técnicos com histórico consistente e atendimento alinhado ao problema.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <article class="testimonial-card border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <p class="text-yellow-500 font-semibold mb-4">5.0 estrelas</p>
+          <p class="text-slate-600 leading-relaxed">"Consegui suporte para minha rede no mesmo dia. O técnico explicou o problema e deixou tudo documentado."</p>
+          <h3 class="font-bold text-slate-900 mt-5">Carla Menezes</h3>
+          <p class="text-sm text-slate-500">Gestora administrativa</p>
+        </article>
+
+        <article class="testimonial-card border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <p class="text-yellow-500 font-semibold mb-4">4.9 estrelas</p>
+          <p class="text-slate-600 leading-relaxed">"Usei a TechConnect para encontrar um especialista em cloud. O perfil completo ajudou muito na escolha."</p>
+          <h3 class="font-bold text-slate-900 mt-5">Renato Alves</h3>
+          <p class="text-sm text-slate-500">Empreendedor</p>
+        </article>
+
+        <article class="testimonial-card border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <p class="text-yellow-500 font-semibold mb-4">5.0 estrelas</p>
+          <p class="text-slate-600 leading-relaxed">"A conversa pelo chat foi objetiva e o orçamento ficou claro antes do atendimento começar."</p>
+          <h3 class="font-bold text-slate-900 mt-5">Juliana Rocha</h3>
+          <p class="text-sm text-slate-500">Cliente residencial</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contato" class="section-anchor bg-slate-950 text-white py-20">
+    <div class="container mx-auto px-6 grid lg:grid-cols-[1fr_.8fr] gap-10 items-center">
+      <div>
+        <p class="text-indigo-300 font-semibold mb-2">Contato</p>
+        <h2 class="text-3xl sm:text-4xl font-bold mb-5">Precisa de um técnico de TI confiável?</h2>
+        <p class="text-slate-300 leading-relaxed max-w-2xl">
+          Busque por especialidade, confira avaliações e fale com um profissional disponível. Para suporte da plataforma, entre em contato pelo e-mail atendimento@techconnect.com.br ou pelo telefone (11) 4002-2026.
+        </p>
+      </div>
+
+      <div class="bg-white text-slate-900 rounded-2xl p-6 shadow-2xl">
+        <h3 class="font-bold text-xl mb-3">Comece pela busca</h3>
+        <p class="text-slate-600 mb-5">Digite sua necessidade e encontre profissionais preparados para resolver o chamado.</p>
+        <a href="#inicio" class="inline-flex bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-xl transition">
+          Encontrar técnico agora
+        </a>
+      </div>
+    </div>
+  </section>
 
 </div>
-
-            <div class="text-left">
-              <p class="text-xs text-slate-400">Olá,</p>
-              <p id="userEmail" class="font-semibold text-slate-800"></p>
-            </div>
-
-          </button>
-
-          <button id="btnLogout" class="bg-red-500 text-white px-4 py-2 rounded-xl">
-            Sair
-          </button>
-
-        </div>
-
-      </nav>
-    </header>
-
-
-    <section class="bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 text-white relative overflow-hidden">
-
-      <div class="absolute -top-20 -left-10 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"></div>
-      <div class="absolute top-40 right-20 w-96 h-96 bg-violet-500/20 rounded-full blur-3xl"></div>
-
-      <div class="container mx-auto px-6 py-28 grid md:grid-cols-2 gap-12 items-center">
-
-        <div>
-          <span class="bg-white/10 border border-white/20 px-5 py-2 rounded-full text-sm">
-            Marketplace para profissionais de TI
-          </span>
-
-          <h1 class="text-6xl font-bold leading-tight mt-8 mb-6">
-            Conectando você aos melhores profissionais de TI
-          </h1>
-
-          <p class="text-slate-300 text-lg mb-10">
-            Suporte técnico, cloud, redes e desenvolvimento em um só lugar.
-          </p>
-
-          <div class="flex flex-col sm:flex-row bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-xl">
-
-            <input id="searchInput" placeholder="Ex: redes, suporte, dev..."
-              class="flex-1 px-6 py-5 text-slate-700 outline-none" />
-
-            <button id="btnBuscar" class="bg-indigo-600 hover:bg-indigo-700 px-8 py-5 font-semibold transition">
-              Buscar
-            </button>
-
-          </div>
-
-          <div class="flex gap-10 mt-10">
-            <div>
-              <p class="text-3xl font-bold">1.2k+</p>
-              <p class="text-slate-400 text-sm">Profissionais</p>
-            </div>
-
-            <div>
-              <p class="text-3xl font-bold">98%</p>
-              <p class="text-slate-400 text-sm">Satisfação</p>
-            </div>
-
-            <div>
-              <p class="text-3xl font-bold">24/7</p>
-              <p class="text-slate-400 text-sm">Disponibilidade</p>
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="hidden md:flex justify-center">
-          <div class="bg-white/10 backdrop-blur-xl p-8 rounded-[30px] shadow-2xl w-80 border border-white/10">
-
-            <p class="text-slate-300 mb-4">Profissional em destaque</p>
-
-            <div class="bg-white text-slate-800 p-6 rounded-3xl">
-              <div class="flex justify-between mb-4">
-                <div>
-                  <h3 class="font-bold text-xl">Especialista Cloud</h3>
-                  <p class="text-slate-500">São Paulo</p>
-                </div>
-                <div class="text-yellow-500">⭐ 5.0</div>
-              </div>
-
-              <div class="grid grid-cols-3 gap-4 text-center">
-                <div>
-                  <p class="font-bold">50+</p>
-                  <p class="text-xs text-slate-500">Projetos</p>
-                </div>
-                <div>
-                  <p class="font-bold">1h</p>
-                  <p class="text-xs text-slate-500">Resposta</p>
-                </div>
-                <div>
-                  <p class="font-bold">R$180</p>
-                  <p class="text-xs text-slate-500">Hora</p>
-                </div>
-              </div>
-
-              <button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-2xl">
-                Contratar agora
-              </button>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-
-    <section class="bg-slate-50 py-20">
-      <div class="container mx-auto px-6 grid md:grid-cols-3 gap-8 text-center">
-
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
-          <div class="text-4xl mb-4">⚡</div>
-          <h3 class="font-bold text-xl mb-3">Profissionais verificados</h3>
-          <p class="text-slate-500 text-sm">Especialistas qualificados perto de você</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
-          <div class="text-4xl mb-4">🛡</div>
-          <h3 class="font-bold text-xl mb-3">Atendimento rápido</h3>
-          <p class="text-slate-500 text-sm">Conecte-se e resolva seu problema rápido</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-3xl shadow-lg hover:-translate-y-2 transition">
-          <div class="text-4xl mb-4">💎</div>
-          <h3 class="font-bold text-xl mb-3">Orçamentos transparentes</h3>
-          <p class="text-slate-500 text-sm">Sem surpresas no valor final</p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <section class="container mx-auto py-20 px-6">
-      <div class="flex justify-between items-center mb-10">
-        <h2 class="text-3xl font-bold text-slate-800">Especialistas disponíveis</h2>
-        <span class="text-sm text-slate-400">Resultados em tempo real</span>
-      </div>
-
-      <div id="listaTecnicos" class="grid md:grid-cols-3 gap-6"></div>
-    </section>
-
-  </div>

@@ -2,7 +2,7 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const port = 5500;
+const port = Number(process.env.PORT || 5500);
 const host = "127.0.0.1";
 const root = __dirname;
 const contentTypes = {

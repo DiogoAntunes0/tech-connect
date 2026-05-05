@@ -1,33 +1,55 @@
-﻿<!-- CADASTRO -->
-  <div id="cadastro"
-    class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-900 to-violet-900">
+<!-- CADASTRO -->
+<div id="cadastro"
+  class="hidden min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-950 px-6 py-10">
 
-    <div class="w-full max-w-md bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[30px] shadow-2xl p-8">
+  <div class="w-full max-w-5xl grid lg:grid-cols-[1.1fr_.9fr] overflow-hidden rounded-3xl bg-white shadow-2xl">
 
-      <h2 class="text-3xl font-bold text-white text-center mb-8">
-        Criar Conta
-      </h2>
+    <section class="p-7 sm:p-10">
+      <div class="mb-8">
+        <p class="text-sm font-semibold text-indigo-600 mb-2">Crie sua conta gratuita</p>
+        <h2 class="text-3xl font-bold text-slate-900">Comece na TechConnect</h2>
+        <p class="text-slate-500 mt-2">Cadastre-se para falar com técnicos, salvar favoritos e editar seu perfil.</p>
+      </div>
 
-      <input id="cadUsuario" placeholder="Nome"
-        class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+      <label class="block text-sm font-semibold text-slate-700 mb-2" for="cadUsuario">Nome completo</label>
+      <input id="cadUsuario" placeholder="Seu nome"
+        class="form-control w-full mb-4 px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 outline-none" />
 
-      <input id="cadEmail" placeholder="Email"
-        class="w-full mb-4 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+      <label class="block text-sm font-semibold text-slate-700 mb-2" for="cadEmail">E-mail</label>
+      <input id="cadEmail" type="email" placeholder="seuemail@exemplo.com"
+        class="form-control w-full mb-4 px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 outline-none" />
 
-      <input id="cadSenha" type="password" placeholder="Senha"
-        class="w-full mb-5 px-5 py-4 rounded-2xl bg-white/10 border border-white/20 text-white" />
+      <label class="block text-sm font-semibold text-slate-700 mb-2" for="cadSenha">Senha</label>
+      <input id="cadSenha" type="password" placeholder="Crie uma senha segura"
+        class="form-control w-full mb-5 px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder-slate-400 outline-none" />
 
-      <button id="fazerCadastro" class="w-full bg-violet-600 hover:bg-violet-700 py-4 rounded-2xl font-bold text-white">
-        Cadastrar
+      <button id="fazerCadastro"
+        class="w-full bg-violet-600 hover:bg-violet-700 py-4 rounded-xl font-bold text-white shadow-lg transition">
+        Criar conta
       </button>
 
-      <p id="cadSucesso" class="hidden text-green-400 text-center mt-4">
-        Cadastro realizado com sucesso
+      <p id="cadSucesso" class="hidden rounded-xl border border-green-200 bg-green-50 text-green-700 text-center mt-4 px-4 py-3">
+        Cadastro realizado com sucesso. Redirecionando para o login...
       </p>
 
-      <button id="voltarCadastro" class="mt-6 text-slate-300 w-full">
-        ← Voltar
+      <button id="voltarCadastro" class="mt-6 text-slate-500 hover:text-indigo-700 w-full transition">
+        Voltar para a página inicial
       </button>
+    </section>
 
-    </div>
+    <aside class="hidden lg:flex flex-col justify-between bg-slate-950 p-10 text-white">
+      <div>
+        <h2 class="text-3xl font-bold leading-tight mb-4">Tecnologia certa, profissional certo</h2>
+        <p class="text-slate-300 leading-relaxed">
+          Encontre suporte para computadores, redes, servidores, cloud, sistemas e projetos digitais com mais clareza antes de contratar.
+        </p>
+      </div>
+
+      <div class="space-y-3 text-sm text-slate-300">
+        <p class="rounded-2xl border border-white/10 p-4">Perfis completos com preço por hora e avaliações.</p>
+        <p class="rounded-2xl border border-white/10 p-4">Chat integrado para alinhar demanda e disponibilidade.</p>
+      </div>
+    </aside>
+
   </div>
+</div>

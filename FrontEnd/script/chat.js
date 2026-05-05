@@ -4,10 +4,7 @@ window.enviarMensagem = enviarMensagem;
 
 let chatAtual = null;
 
-
-/* ========= ABRIR CHAT ========= */
 function abrirChat(tecnico) {
-
     if (!tecnico) {
         console.error("Nenhum técnico recebido no abrirChat()");
         return;
@@ -27,8 +24,6 @@ function abrirChat(tecnico) {
     const chat = document.getElementById("chatBox");
 
     chat.classList.remove("hidden");
-
-    /* força reflow para animação funcionar */
     chat.offsetHeight;
 
     setTimeout(() => {
@@ -36,14 +31,9 @@ function abrirChat(tecnico) {
     }, 50);
 
     carregarMensagens();
-
 }
 
-
-
-/* ========= FECHAR ========= */
 function fecharChat() {
-
     const chat = document.getElementById("chatBox");
 
     chat.classList.add("translate-x-full");
@@ -51,43 +41,22 @@ function fecharChat() {
     setTimeout(() => {
         chat.classList.add("hidden");
     }, 300);
-
 }
 
-
-
-/* ========= STORAGE ========= */
 function getMensagens() {
-
     if (!chatAtual) return [];
 
-    return JSON.parse(
-        localStorage.getItem(
-            "chat_" + chatAtual.nome
-        )
-    ) || [];
-
+    return JSON.parse(localStorage.getItem("chat_" + chatAtual.nome)) || [];
 }
-
 
 function salvarMensagens(msgs) {
-
     if (!chatAtual) return;
 
-    localStorage.setItem(
-        "chat_" + chatAtual.nome,
-        JSON.stringify(msgs)
-    );
-
+    localStorage.setItem("chat_" + chatAtual.nome, JSON.stringify(msgs));
 }
 
-
-
-/* ========= RENDER ========= */
 function carregarMensagens() {
-
-    const container =
-        document.getElementById("chatMensagens");
+    const container = document.getElementById("chatMensagens");
 
     if (!container) return;
 
@@ -96,63 +65,40 @@ function carregarMensagens() {
     const msgs = getMensagens();
 
     msgs.forEach(m => {
-
         const user = JSON.parse(localStorage.getItem("user"));
 
         container.innerHTML += `
-<div class="flex ${m.eu ? 'justify-end' : 'justify-start'} items-end gap-2">
-
+<div class="flex ${m.eu ? "justify-end" : "justify-start"} items-end gap-2">
   ${!m.eu ? `
-      <img src="${chatAtual.foto || 'https://i.pravatar.cc/150?img=1'}"
+      <img src="${chatAtual.foto || "https://i.pravatar.cc/150?img=1"}"
+      alt="Foto de ${chatAtual.nome}"
       class="w-8 h-8 rounded-full object-cover">
-    ` : ''
-            }
+    ` : ""}
 
-  <div class="
-  ${m.eu
-                ? 'bg-indigo-600 text-white rounded-br-md'
-                : 'bg-white border rounded-bl-md'}
-  max-w-[75%]
-  px-4 py-3
-  rounded-2xl
-  shadow-sm">
-
+  <div class="${m.eu
+                ? "bg-indigo-600 text-white rounded-br-md"
+                : "bg-white border rounded-bl-md"}
+  max-w-[75%] px-4 py-3 rounded-2xl shadow-sm">
     <p class="text-sm">${m.texto}</p>
+    <p class="text-[10px] mt-1 opacity-70">${m.hora}</p>
+  </div>
 
-    <p class="text-[10px] mt-1 opacity-70">
-    ${m.hora}
-    </p>
-
-</div>
-
-${m.eu ? `
-    <img src="${user?.foto || ''}"
-    class="w-8 h-8 rounded-full object-cover ${user?.foto ? '' : 'hidden'}">
-    ` : ''
-            }
-
+  ${m.eu ? `
+    <img src="${user?.foto || ""}" alt="Sua foto"
+    class="w-8 h-8 rounded-full object-cover ${user?.foto ? "" : "hidden"}">
+    ` : ""}
 </div>
 `;
-
     });
 
-    container.scrollTop =
-        container.scrollHeight;
-
+    container.scrollTop = container.scrollHeight;
 }
 
-
-
-/* ========= ENVIAR ========= */
 function enviarMensagem() {
-
     if (!chatAtual) return;
 
-    const input =
-        document.getElementById("chatInput");
-
-    const texto =
-        input.value.trim();
+    const input = document.getElementById("chatInput");
+    const texto = input.value.trim();
 
     if (!texto) return;
 
@@ -170,23 +116,16 @@ function enviarMensagem() {
     salvarMensagens(msgs);
 
     input.value = "";
-
     carregarMensagens();
 
-
-    /* digitando fake */
-    const digitando =
-        document.getElementById("digitando");
-
+    const digitando = document.getElementById("digitando");
     digitando.classList.remove("hidden");
 
-
     setTimeout(() => {
-
         digitando.classList.add("hidden");
 
         msgs.push({
-            texto: "Olá! Recebi sua mensagem 👍 Como posso ajudar?",
+            texto: "Olá! Recebi sua mensagem. Como posso ajudar?",
             eu: false,
             hora: new Date().toLocaleTimeString([], {
                 hour: "2-digit",
@@ -195,54 +134,31 @@ function enviarMensagem() {
         });
 
         salvarMensagens(msgs);
-
         carregarMensagens();
-
     }, 1500);
-
 }
 
-
-
-/* ========= ENTER ========= */
 function iniciarEventosChat() {
+    const input = document.getElementById("chatInput");
 
-        const input =
-            document.getElementById("chatInput");
+    if (input) {
+        input.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                enviarMensagem();
+            }
+        });
+    }
 
-        if (input) {
+    const btnPerfil = document.getElementById("btnChatPerfil");
 
-            input.addEventListener(
-                "keypress",
-                function (e) {
-
-                    if (e.key === "Enter") {
-                        e.preventDefault();
-                        enviarMensagem();
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* botão do perfil */
-        const btnPerfil =
-            document.getElementById("btnChatPerfil");
-
-        if (btnPerfil) {
-
-            btnPerfil.onclick = function () {
-
-                if (window.tecnicoSelecionado) {
-                    abrirChat(window.tecnicoSelecionado);
-                }
-
-            };
-
-        }
-
+    if (btnPerfil) {
+        btnPerfil.onclick = function () {
+            if (window.tecnicoSelecionado) {
+                abrirChat(window.tecnicoSelecionado);
+            }
+        };
+    }
 }
 
 iniciarEventosChat();
