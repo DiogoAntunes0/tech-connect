@@ -8,7 +8,7 @@ public class Recrutador extends Usuario {
     private String cargo;
     private List<Double> avaliacoesFeitas;
 
-    public Recrutador(long id, boolean lembrarMe, String nome, String senha, Enum tipousuario, List<Double> avaliacoesFeitas, String cargo, String empresa) {
+    public Recrutador(long id, boolean lembrarMe, String nome, String senha, TipoUsuario tipousuario, List<Double> avaliacoesFeitas, String cargo, String empresa) {
         super(id, lembrarMe, nome, senha, tipousuario);
         this.avaliacoesFeitas = avaliacoesFeitas;
         this.cargo = cargo;

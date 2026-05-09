@@ -90,6 +90,36 @@ fazerCadastro.onclick = () => {
     const email = cadEmail.value.trim();
     const senha = cadSenha.value;
 
+    const dados = {
+        "nome": usuario, 
+        "email": email, 
+        "senha": senha
+    }; 
+
+   async function enviarDados() {
+  try {
+    const response = await fetch("http://localhost:8080/tecnicos/cadastrarTecnicos", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // "Authorization": "Bearer SEU_TOKEN" // se precisar de auth
+      },
+      body: JSON.stringify(dados)
+    });
+
+    if (!response.ok) {
+      throw new Error(`Erro HTTP: ${response.status}`);
+    }
+
+    const resultado = await response.json();
+    console.log("Resposta do servidor:", resultado);
+
+  } catch (erro) {
+    console.error("Erro na requisição:", erro);
+  }
+}
+enviarDados();
+
     if (!usuario || !email || !senha) return;
 
     setUser({

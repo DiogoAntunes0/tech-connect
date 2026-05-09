@@ -1,49 +1,159 @@
 package br.com.tech_connect.backend.Model;
+import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
-public class Tecnico extends Usuario {
-    //usuario_ID;
-    private String area;
-    private String cidade;
-    private Date dataNascimento;
-    private Double valorHora;
-    private List<Double> avaliacoesRecebidas;
-    private String biografia;
-    //foto
+@Entity
+@Table(name = "tecnicos")
+public class Tecnico {
 
-    public Tecnico(long id, boolean lembrarMe, String nome, String senha, Enum tipousuario, String area, List<Double> avaliacoesRecebidas, String biografia, String cidade, Date dataNascimento, Double valorHora) {
-        super(id, lembrarMe, nome, senha, tipousuario);
-        this.area = area;
-        this.avaliacoesRecebidas = avaliacoesRecebidas;
-        this.biografia = biografia;
-        this.cidade = cidade;
-        this.dataNascimento = dataNascimento;
-        this.valorHora = valorHora;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private String nome;
+
+    private String area;       // "Suporte Técnico", "Redes e Infraestrutura", etc.
+    private String cidade;
+    private Integer idade;
+    private Double valorHora;  // perfilValor
+    private Double rating;     // perfilRating — calculado pela média das avaliações
+    private String foto;       // URL da foto
+
+    @Column(columnDefinition = "TEXT")
+    private String bio;
+
+    private String sucesso;    // ex: "97%" — pode virar campo calculado no futuro
+    private String resposta;   // tempo médio de resposta, ex: "45 min"
+    private Integer atendimentos;
+
+    // Skills armazenadas como JSON ou tabela separada (ver Tecnico_Skills)
+    @ElementCollection
+    @CollectionTable(name = "tecnico_skills", joinColumns = @JoinColumn(name = "tecnico_id"))
+    @Column(name = "skill")
+    private List<String> skills;
+
+    @Column(name = "criado_em")
+    private LocalDateTime criadoEm = LocalDateTime.now();
 
     public String getArea() {
         return area;
     }
 
-    public List<Double> getAvaliacoes() {
-        return avaliacoesRecebidas;
+    public void setArea(String area) {
+        this.area = area;
     }
 
-    public String getBiografia() {
-        return biografia;
+    public Integer getAtendimentos() {
+        return atendimentos;
+    }
+
+    public void setAtendimentos(Integer atendimentos) {
+        this.atendimentos = atendimentos;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 
     public String getCidade() {
         return cidade;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public LocalDateTime getCriadoEm() {
+        return criadoEm;
+    }
+
+    public void setCriadoEm(LocalDateTime criadoEm) {
+        this.criadoEm = criadoEm;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
+    }
+
+    public List<String> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<String> skills) {
+        this.skills = skills;
+    }
+
+    public String getSucesso() {
+        return sucesso;
+    }
+
+    public void setSucesso(String sucesso) {
+        this.sucesso = sucesso;
     }
 
     public Double getValorHora() {
         return valorHora;
+    }
+
+    public void setValorHora(Double valorHora) {
+        this.valorHora = valorHora;
+    }
+
+    public Arrays getProjetos() {}
+
+    public void setProjetos(List<Projeto> projetos) {
+
     }
 }
