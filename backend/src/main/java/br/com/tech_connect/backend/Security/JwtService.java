@@ -2,7 +2,7 @@ package br.com.tech_connect.backend.Security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,21 +19,17 @@ public class JwtService {
     @Value("${app.jwt.expiration-ms}")
     private long expirationMs;
 
-    // Gera o token JWT com o id e email do usuário
-    // Chamado por: UsuarioService.autenticar() após validar credenciais
-    // O front guarda este token no localStorage e envia em todas as requisições protegidas:
-    // headers: { Authorization: `Bearer ${token}` }
     public String gerarToken(Long usuarioId, String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .claim("usuarioId", usuarioId)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationMs))
-                .signWith(getKey(), SignatureAlgorithm.HS256)
+                .signWith(getKey()) // HS256 inferido automaticamente
                 .compact();
     }
 
-    // Extrai o e-mail do token (usado como identificador principal)
+    // Extrai o e-mail do token
     public String extrairEmail(String token) {
         return extrairClaims(token).getSubject();
     }
@@ -65,7 +61,9 @@ public class JwtService {
                 .getBody();
     }
 
+    // Decodifica o secret de Base64 — mais seguro que getBytes()
     private Key getKey() {
-        return Keys.hmacShaKeyFor(secret.getBytes());
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 }

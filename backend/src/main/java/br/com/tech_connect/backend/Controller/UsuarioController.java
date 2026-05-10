@@ -2,8 +2,6 @@ package br.com.tech_connect.backend.Controller;
 
 import br.com.tech_connect.backend.Dtos.UsuarioDto;
 import br.com.tech_connect.backend.Service.UsuarioService;
-import br.com.tech_connect.backend.Dtos.UsuarioDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +28,7 @@ public class UsuarioController {
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDto> atualizar(
             @PathVariable Long id,
-            @RequestBody @Valid UsuarioDto dto) {
+            @RequestBody UsuarioDto dto) {
         return ResponseEntity.ok(usuarioService.atualizar(id, dto));
     }
 

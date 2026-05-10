@@ -80,7 +80,7 @@ public class AvaliacaoService {
     // Calcula a média das notas de todas as avaliações do técnico
     // e delega a atualização para o TecnicoService
     private void recalcularRating(Long tecnicoId) {
-        Double media = avaliacaoRepository.avgByTecnicoId(tecnicoId);
+        Double media = avaliacaoRepository.calcularMediaByTecnicoId(tecnicoId);
         if (media != null) {
             // Arredonda para 1 casa decimal (ex: 4.8, 5.0)
             double arredondado = Math.round(media * 10.0) / 10.0;

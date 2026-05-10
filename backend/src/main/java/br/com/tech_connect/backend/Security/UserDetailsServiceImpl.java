@@ -1,7 +1,7 @@
 package br.com.tech_connect.backend.Security;
 
-import com.techconnect.entity.Usuario;
-import com.techconnect.repository.UsuarioRepository;
+import br.com.tech_connect.backend.Model.Usuario;
+import br.com.tech_connect.backend.Repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

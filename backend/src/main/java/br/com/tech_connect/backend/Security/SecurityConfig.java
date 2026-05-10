@@ -1,6 +1,6 @@
 package br.com.tech_connect.backend.Security;
 
-import com.techconnect.security.JwtFilter;
+import br.com.tech_connect.backend.Security.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import com.techconnect.security.UserDetailsServiceImpl;
+import br.com.tech_connect.backend.Security.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -99,9 +99,8 @@ public class SecurityConfig {
     // Provider que conecta o UserDetailsService + PasswordEncoder ao Spring Security
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider(passwordEncoder());
         provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder());
         return provider;
     }
 

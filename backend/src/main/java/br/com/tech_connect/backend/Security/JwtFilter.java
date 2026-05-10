@@ -1,6 +1,6 @@
 package br.com.tech_connect.backend.Security;
 
-import com.techconnect.repository.UsuarioRepository;
+import br.com.tech_connect.backend.Repository.UsuarioRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

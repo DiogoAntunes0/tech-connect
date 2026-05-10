@@ -8,6 +8,5 @@ public class TechConnectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TechConnectApplication.class, args);
-
 	}
 }

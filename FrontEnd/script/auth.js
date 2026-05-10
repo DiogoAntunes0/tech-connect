@@ -1,283 +1,158 @@
-/* ----------- TELAS ----------- */
+function iniciarAuth() {
+    const fazerCadastro = document.getElementById("fazerCadastro");
+    const cadUsuario = document.getElementById("cadUsuario");
+    const cadEmail = document.getElementById("cadEmail");
+    const cadSenha = document.getElementById("cadSenha");
+    const cadSucesso = document.getElementById("cadSucesso");
+    const fazerLogin = document.getElementById("fazerLogin");
+    const loginEmail = document.getElementById("loginEmail");
+    const loginSenha = document.getElementById("loginSenha");
+    const loginErro = document.getElementById("loginErro");
+    const btnLogout = document.getElementById("btnLogout");
 
-function showScreen(tela) {
-    const telas = ["home", "login", "cadastro", "perfilUsuario"];
+    const btnLogin = document.getElementById("btnLogin");
+    const btnCadastro = document.getElementById("btnCadastro");
+    const voltarLogin = document.getElementById("voltarLogin");
+    const voltarCadastro = document.getElementById("voltarCadastro");
+    const voltarPerfilUsuario = document.getElementById("voltarPerfilUsuario");
+    const btnMeuPerfil = document.getElementById("btnMeuPerfil");
 
-    telas.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.classList.add("hidden");
-            el.classList.remove("flex");
-        }
-    });
+    if (btnLogin) btnLogin.onclick = () => showScreen("login");
+    if (btnCadastro) btnCadastro.onclick = () => showScreen("cadastro");
+    if (voltarLogin) voltarLogin.onclick = () => showScreen("home");
+    if (voltarCadastro) voltarCadastro.onclick = () => showScreen("home");
+    if (voltarPerfilUsuario) voltarPerfilUsuario.onclick = () => showScreen("home");
 
-    if (tela === "home") {
-        document.getElementById("home").classList.remove("hidden");
-    }
-
-    if (tela === "login") {
-        const login = document.getElementById("login");
-        login.classList.remove("hidden");
-        login.classList.add("flex");
-    }
-
-    if (tela === "cadastro") {
-        const cadastro = document.getElementById("cadastro");
-        cadastro.classList.remove("hidden");
-        cadastro.classList.add("flex");
-    }
-
-    if (tela === "perfilUsuario") {
-        document.getElementById("perfilUsuario").classList.remove("hidden");
-    }
-}
-
-
-/* ---------- STORAGE ---------- */
-
-function getUser() {
-    return JSON.parse(localStorage.getItem("user"));
-}
-
-function setUser(user) {
-    localStorage.setItem("user", JSON.stringify(user));
-}
-
-
-/* ---------- LOGIN ---------- */
-
-function loginUser(user) {
-    localStorage.setItem("logado", "true");
-
-    document.getElementById("userEmail").innerText =
-        user.usuario || user.nome || user.email;
-
-    const avatarLetra = document.getElementById("userAvatar");
-    const avatarImg = document.getElementById("userAvatarImg");
-
-    if (user.foto) {
-        avatarImg.src = user.foto;
-        avatarImg.classList.remove("hidden");
-        avatarLetra.classList.add("hidden");
-    } else {
-        avatarLetra.innerText =
-            (user.usuario || user.email).charAt(0).toUpperCase();
-
-        avatarImg.classList.add("hidden");
-        avatarLetra.classList.remove("hidden");
-    }
-
-    document.getElementById("navButtons").classList.add("hidden");
-    document.getElementById("userArea").classList.remove("hidden");
-
-    showScreen("home");
-}
-
-
-/* ---------- NAVEGAÇÃO ---------- */
-
-btnLogin.onclick = () => showScreen("login");
-btnCadastro.onclick = () => showScreen("cadastro");
-voltarLogin.onclick = () => showScreen("home");
-voltarCadastro.onclick = () => showScreen("home");
-voltarPerfilUsuario.onclick = () => showScreen("home");
-
-
-/* ---------- CADASTRO ---------- */
-
-fazerCadastro.onclick = () => {
-    const usuario = cadUsuario.value.trim();
-    const email = cadEmail.value.trim();
-    const senha = cadSenha.value;
-
-
-    if (!usuario || !email || !senha) return;
-
-    setUser({
-        usuario,
-        email,
-        senha,
-        idade: "",
-        valorHora: "",
-        bio: "",
-        especialidades: "",
-        projetos: ""
-    });
-
-    cadSucesso.classList.remove("hidden");
-
-    setTimeout(() => {
-        showScreen("login");
-    }, 1200);
-};
-
-
-/* ---------- LOGIN ---------- */
-
-fazerLogin.onclick = () => {
-    const email = loginEmail.value.trim();
-    const senha = loginSenha.value;
-    const user = getUser();
-
-    if (user && user.email === email && user.senha === senha) {
-        loginErro.classList.add("hidden");
-        loginUser(user);
-    } else {
-        loginErro.classList.remove("hidden");
-    }
-};
-
-
-/* ---------- LOGOUT ---------- */
-
-btnLogout.onclick = () => {
-    localStorage.removeItem("logado");
-
-    document.getElementById("userArea").classList.add("hidden");
-    document.getElementById("navButtons").classList.remove("hidden");
-
-    showScreen("home");
-};
-
-
-/* -------- PERFIL DO USUÁRIO -------- */
-
-btnMeuPerfil.onclick = () => {
-    const user = getUser();
-    if (!user) return;
-
-    perfilUserNome.innerText = user.usuario;
-    perfilUserEmail.innerText = user.email;
-
-    editarNome.value = user.usuario || "";
-    editarEmail.value = user.email || "";
-    editarBio.value = user.bio || "";
-    editarIdade.value = user.idade || "";
-    editarValorHora.value = user.valorHora || "";
-    editarEspecialidades.value = user.especialidades || "";
-    editarProjetos.value = user.projetos || "";
-
-    if (user.foto) {
-        previewFoto.src = user.foto;
-        previewFoto.classList.remove("hidden");
-        perfilInicial.classList.add("hidden");
-    } else {
-        perfilInicial.innerText = (user.usuario || "U").charAt(0).toUpperCase();
-        previewFoto.classList.add("hidden");
-        perfilInicial.classList.remove("hidden");
-    }
-
-    showScreen("perfilUsuario");
-};
-
-
-/* -------- SALVAR PERFIL -------- */
-
-salvarPerfilUsuario.onclick = () => {
-    const user = getUser();
-    if (!user) return;
-
-    user.usuario = editarNome.value.trim();
-    user.email = editarEmail.value.trim();
-    user.bio = editarBio.value.trim();
-    user.idade = editarIdade.value;
-    user.valorHora = editarValorHora.value;
-    user.especialidades = editarEspecialidades.value.trim();
-    user.projetos = editarProjetos.value.trim();
-
-    setUser(user);
-
-    userEmail.innerText = user.usuario;
-    perfilUserNome.innerText = user.usuario;
-    perfilUserEmail.innerText = user.email;
-
-    const avatarLetra = document.getElementById("userAvatar");
-    const avatarImg = document.getElementById("userAvatarImg");
-
-    if (user.foto) {
-        avatarImg.src = user.foto;
-        avatarImg.classList.remove("hidden");
-        avatarLetra.classList.add("hidden");
-    } else {
-        avatarLetra.innerText = (user.usuario || "U").charAt(0).toUpperCase();
-        avatarImg.classList.add("hidden");
-        avatarLetra.classList.remove("hidden");
-    }
-
-    perfilSalvo.classList.remove("hidden");
-
-    setTimeout(() => {
-        perfilSalvo.classList.add("hidden");
-    }, 2000);
-};
-
-
-/* -------- FOTO -------- */
-
-inputFoto.onchange = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function (event) {
-        previewFoto.src = event.target.result;
-        previewFoto.classList.remove("hidden");
-        perfilInicial.classList.add("hidden");
-
-        const user = getUser();
+    if (btnMeuPerfil) btnMeuPerfil.onclick = () => {
+        const user = JSON.parse(localStorage.getItem("user"));
         if (!user) return;
 
-        user.foto = event.target.result;
-        setUser(user);
+        document.getElementById("perfilUserNome").innerText = user.nome || "";
+        document.getElementById("perfilUserEmail").innerText = user.email || "";
+        document.getElementById("editarNome").value = user.nome || "";
+        document.getElementById("editarEmail").value = user.email || "";
+        document.getElementById("editarBio").value = user.bio || "";
+        document.getElementById("editarIdade").value = user.idade || "";
+        document.getElementById("editarValorHora").value = user.valorHora || "";
+        document.getElementById("editarEspecialidades").value = user.especialidades || "";
+        document.getElementById("editarProjetos").value = user.projetos || "";
+
+        showScreen("perfilUsuario");
     };
 
-    reader.readAsDataURL(file);
-};
+    if (fazerCadastro) {
+        fazerCadastro.onclick = async () => {
+            const nome = cadUsuario.value.trim();
+            const email = cadEmail.value.trim();
+            const senha = cadSenha.value;
+            if (!nome || !email || !senha) return;
 
-
-/* ------- LOGIN SOCIAL (DEMO) ------- */
-
-googleLogin.onclick = () => {
-    const user = {
-        usuario: "Usuário Google",
-        email: "google@usuario.com",
-        idade: "",
-        valorHora: "",
-        bio: "",
-        especialidades: "",
-        projetos: ""
-    };
-
-    setUser(user);
-    loginUser(user);
-};
-
-githubLogin.onclick = () => {
-    const user = {
-        usuario: "Usuário GitHub",
-        email: "github@usuario.com",
-        idade: "",
-        valorHora: "",
-        bio: "",
-        especialidades: "",
-        projetos: ""
-    };
-
-    setUser(user);
-    loginUser(user);
-};
-
-
-/* ------- SESSÃO PERSISTENTE ------- */
-
-function iniciarSessaoPersistente() {
-    const logado = localStorage.getItem("logado");
-    const user = getUser();
-
-    if (logado && user) {
-        loginUser(user);
+            try {
+                const res = await fetch(`${API}/api/auth/cadastrar`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nome, email, senha })
+                });
+                if (!res.ok) throw new Error("Erro ao cadastrar");
+                cadSucesso.classList.remove("hidden");
+                setTimeout(() => showScreen("login"), 1200);
+            } catch (err) {
+                console.error(err);
+                alert("Erro ao cadastrar. Tente novamente.");
+            }
+        };
     }
+
+   if (fazerLogin) {
+    fazerLogin.onclick = async () => {
+        const email = loginEmail.value.trim();
+        const senha = loginSenha.value;
+        try {
+            const res = await fetch(`${API}/api/auth/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, senha })
+            });
+            if (!res.ok) { loginErro.classList.remove("hidden"); return; }
+
+            const data = await res.json();
+            // Salva token e email para identificar o usuário
+            const user = { token: data.token, email, nome: email.split("@")[0] };
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(user));
+
+            loginErro.classList.add("hidden");
+            loginUser(user);
+
+            
+        } catch (err) {
+            console.error(err);
+            loginErro.classList.remove("hidden");
+        }
+    };
 }
 
-iniciarSessaoPersistente();
+    if (btnLogout) {
+        btnLogout.onclick = () => {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("logado");
+            document.getElementById("userArea")?.classList.add("hidden");
+            document.getElementById("navButtons")?.classList.remove("hidden");
+            showScreen("home");
+        };
+    }
+
+ const salvarPerfilUsuario = document.getElementById("salvarPerfilUsuario");
+if (salvarPerfilUsuario) {
+    salvarPerfilUsuario.onclick = async () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user) return;
+
+        const dadosAtualizados = {
+            nome: document.getElementById("editarNome").value.trim(),
+            email: document.getElementById("editarEmail").value.trim(),
+            bio: document.getElementById("editarBio").value.trim(),
+            idade: Number(document.getElementById("editarIdade").value) || null,
+            valorHora: Number(document.getElementById("editarValorHora").value) || null,
+            especialidades: document.getElementById("editarEspecialidades").value.trim(),
+            projetos: document.getElementById("editarProjetos").value.trim(),
+            foto: user.foto || null
+        };
+
+        try {
+            const res = await fetch(`${API}/api/usuarios/${user.id}`, {
+                method: "PUT",
+                headers: authHeader(),
+                body: JSON.stringify(dadosAtualizados)
+            });
+
+            if (!res.ok) throw new Error("Erro ao salvar");
+
+            const atualizado = await res.json();
+
+            // Atualiza localStorage com dados novos
+            const userAtualizado = { ...user, ...atualizado };
+            localStorage.setItem("user", JSON.stringify(userAtualizado));
+
+            document.getElementById("userEmail").innerText = atualizado.nome;
+            document.getElementById("perfilUserNome").innerText = atualizado.nome;
+            document.getElementById("perfilUserEmail").innerText = atualizado.email;
+
+            const perfilSalvo = document.getElementById("perfilSalvo");
+            perfilSalvo.classList.remove("hidden");
+            setTimeout(() => perfilSalvo.classList.add("hidden"), 2000);
+
+        } catch (err) {
+            console.error(err);
+            alert("Erro ao salvar perfil. Tente novamente.");
+        }
+    };
+}
+
+}
+
+function getToken() { return localStorage.getItem("token"); }
+function authHeader() {
+    return { "Authorization": `Bearer ${getToken()}`, "Content-Type": "application/json" };
+}

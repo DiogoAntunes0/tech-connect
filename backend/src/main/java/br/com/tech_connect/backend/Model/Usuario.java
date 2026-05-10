@@ -30,7 +30,8 @@ public class Usuario {
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();
 
-    public Usuario(long id, boolean lembrarMe, String nome, String senha, TipoUsuario tipousuario) {
+    public Usuario() {
+
     }
 
     public String getBio() {
