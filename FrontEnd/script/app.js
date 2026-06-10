@@ -7,6 +7,7 @@ const sections = [
     "./sections/perfil-drawer.html",
     "./sections/chat.html",
     "./sections/perfil-usuario.html",
+    "./sections/modal-premium.html",
     "./sections/footer.html",
 ];
 
@@ -39,28 +40,27 @@ function loadScript(src) {
     });
 }
 
-/* ---------- TELAS ---------- */
+/* ── TELAS ── */
 function showScreen(tela) {
     ["home", "login", "cadastro", "perfilUsuario"].forEach(id => {
         const el = document.getElementById(id);
         if (el) { el.classList.add("hidden"); el.classList.remove("flex"); }
     });
-
     const el = document.getElementById(tela);
     if (!el) return;
     el.classList.remove("hidden");
     if (tela === "login" || tela === "cadastro") el.classList.add("flex");
 }
 
-/* ---------- LOGIN USER ---------- */
+/* ── LOGIN USER ── */
 function loginUser(user) {
     localStorage.setItem("logado", "true");
 
-    const userEmail = document.getElementById("userEmail");
-    if (userEmail) userEmail.innerText = user.nome || user.email || "";
-
+    const userEmail   = document.getElementById("userEmail");
     const avatarLetra = document.getElementById("userAvatar");
-    const avatarImg = document.getElementById("userAvatarImg");
+    const avatarImg   = document.getElementById("userAvatarImg");
+
+    if (userEmail) userEmail.innerText = user.nome || user.email || "";
 
     if (user.foto && avatarImg) {
         avatarImg.src = user.foto;
@@ -68,24 +68,29 @@ function loginUser(user) {
         if (avatarLetra) avatarLetra.classList.add("hidden");
     } else {
         if (avatarLetra) avatarLetra.innerText = (user.nome || user.email || "U").charAt(0).toUpperCase();
-        if (avatarImg) avatarImg.classList.add("hidden");
+        if (avatarImg)   avatarImg.classList.add("hidden");
         if (avatarLetra) avatarLetra.classList.remove("hidden");
     }
 
     document.getElementById("navButtons")?.classList.add("hidden");
     document.getElementById("userArea")?.classList.remove("hidden");
 
+    // Atualiza botão premium / badge PRO no nav
+    if (typeof window.atualizarUIUsuario === "function") {
+        window.atualizarUIUsuario();
+    }
+
     showScreen("home");
 }
 
-/* ---------- SESSÃO PERSISTENTE ---------- */
+/* ── SESSÃO PERSISTENTE ── */
 function iniciarSessaoPersistente() {
     const logado = localStorage.getItem("logado");
-    const user = JSON.parse(localStorage.getItem("user"));
+    const user   = JSON.parse(localStorage.getItem("user"));
     if (logado && user) loginUser(user);
 }
 
-/* ---------- START ---------- */
+/* ── START ── */
 async function startApp() {
     try {
         await loadSections();
@@ -94,11 +99,11 @@ async function startApp() {
             await loadScript(script);
         }
 
-        if (typeof iniciarAuth === "function") iniciarAuth();
-        if (typeof iniciarSessaoPersistente === "function") iniciarSessaoPersistente();
-        if (typeof renderTecnicos === "function") renderTecnicos();
-        if (typeof iniciarEventosChat === "function") iniciarEventosChat();
-        if (typeof iniciarEventosTecnicos === "function") iniciarEventosTecnicos();
+        if (typeof iniciarAuth              === "function") iniciarAuth();
+        if (typeof iniciarSessaoPersistente  === "function") iniciarSessaoPersistente();
+        if (typeof renderTecnicos           === "function") renderTecnicos();
+        if (typeof iniciarEventosChat       === "function") iniciarEventosChat();
+        if (typeof iniciarEventosTecnicos   === "function") iniciarEventosTecnicos();
         if (typeof iniciarEventosAvaliacoes === "function") iniciarEventosAvaliacoes();
 
     } catch (error) {
@@ -109,8 +114,7 @@ async function startApp() {
                     <h1 class="text-2xl font-bold text-slate-800 mb-3">Erro ao carregar a pagina</h1>
                     <p class="text-slate-500">Abra pelo Live Server para carregar as secoes.</p>
                 </div>
-            </section>
-        `;
+            </section>`;
     }
 }
 

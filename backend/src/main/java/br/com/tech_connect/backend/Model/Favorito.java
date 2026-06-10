@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "favoritos",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id","tecnico_id"}))
+        uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "tecnico_id"}))
 public class Favorito {
 
     @Id
@@ -24,13 +24,15 @@ public class Favorito {
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();
 
-    public void setUsuario(Usuario usuario) {
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public void setTecnico(Tecnico tecnico) {
-    }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public Tecnico getTecnico() {
-        return null;
-    }
+    public Tecnico getTecnico() { return tecnico; }
+    public void setTecnico(Tecnico tecnico) { this.tecnico = tecnico; }
+
+    public LocalDateTime getCriadoEm() { return criadoEm; }
+    public void setCriadoEm(LocalDateTime criadoEm) { this.criadoEm = criadoEm; }
 }

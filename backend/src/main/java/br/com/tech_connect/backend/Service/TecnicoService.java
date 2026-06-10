@@ -1,13 +1,9 @@
 package br.com.tech_connect.backend.Service;
 
-import br.com.tech_connect.backend.Dtos.TecnicoDto;
-
 import br.com.tech_connect.backend.Dtos.ProjetoDto;
 import br.com.tech_connect.backend.Dtos.TecnicoDto;
-
 import br.com.tech_connect.backend.Model.Projeto;
 import br.com.tech_connect.backend.Model.Tecnico;
-
 import br.com.tech_connect.backend.Repository.TecnicoRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,8 +20,6 @@ public class TecnicoService {
     private final TecnicoRepository tecnicoRepository;
 
     // --- LISTAR TODOS ---
-    // Chamado por: TecnicoController.listar → tecnicos.js → renderTecnicos()
-    // Substitui o array hardcoded `const tecnicos = [...]` no front
     public @Nullable List<TecnicoDto> listarTodos() {
         return tecnicoRepository.findAll()
                 .stream()
@@ -34,8 +28,6 @@ public class TecnicoService {
     }
 
     // --- BUSCAR POR TERMO ---
-    // Chamado por: TecnicoController.buscar → btnBuscar → renderTecnicos(filtro)
-    // Filtra por nome, área, cidade ou qualquer skill (query JPQL no repository)
     public @Nullable List<TecnicoDto> buscarPorTermo(String termo) {
         if (termo == null || termo.isBlank()) {
             return listarTodos();
@@ -47,8 +39,6 @@ public class TecnicoService {
     }
 
     // --- BUSCAR POR ID ---
-    // Chamado por: TecnicoController.buscarPorId → abrirPerfil(tecnico)
-    // Retorna TecnicoDTO com projetos e skills embutidos
     public TecnicoDto buscarPorId(Long id) {
         Tecnico tecnico = tecnicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Técnico não encontrado"));
@@ -56,8 +46,6 @@ public class TecnicoService {
     }
 
     // --- CADASTRAR ---
-    // Chamado por: TecnicoController.cadastrar
-    // Cria técnico com skills e projetos vinculados
     @Transactional
     public TecnicoDto cadastrar(TecnicoDto dto) {
         Tecnico tecnico = toEntity(dto);
@@ -65,8 +53,8 @@ public class TecnicoService {
     }
 
     // --- ATUALIZAR ---
-    // Chamado por: TecnicoController.atualizar → salvarPerfilUsuario (quando for técnico)
-    // Atualiza todos os campos editáveis, inclusive lista de skills
+    // Inclui premium: ao receber premium=true via PUT /api/tecnicos/:id
+    // (disparado pelo modal de pagamento simulado no front), persiste o flag.
     @Transactional
     public TecnicoDto atualizar(Long id, TecnicoDto dto) {
         Tecnico tecnico = tecnicoRepository.findById(id)
@@ -83,12 +71,15 @@ public class TecnicoService {
         tecnico.setFoto(dto.foto());
         tecnico.setSkills(dto.skills());
 
+        // Só atualiza premium se vier explicitamente no payload
+        if (dto.premium() != null) {
+            tecnico.setPremium(dto.premium());
+        }
+
         return toDTO(tecnicoRepository.save(tecnico));
     }
 
     // --- ATUALIZAR RATING ---
-    // Chamado internamente pelo AvaliacaoService após cada nova avaliação
-    // Recalcula a média e persiste no campo rating do técnico
     @Transactional
     public void atualizarRating(Long tecnicoId, Double novoRating) {
         Tecnico tecnico = tecnicoRepository.findById(tecnicoId)
@@ -133,7 +124,8 @@ public class TecnicoService {
                 t.getResposta(),
                 t.getAtendimentos(),
                 t.getSkills(),
-                projetos
+                projetos,
+                t.getPremium()
         );
     }
 
@@ -150,6 +142,7 @@ public class TecnicoService {
         tecnico.setResposta(dto.resposta());
         tecnico.setFoto(dto.foto());
         tecnico.setSkills(dto.skills());
+        tecnico.setPremium(dto.premium() != null ? dto.premium() : false);
 
         if (dto.projetos() != null) {
             List<Projeto> projetos = dto.projetos().stream().map(p -> {
