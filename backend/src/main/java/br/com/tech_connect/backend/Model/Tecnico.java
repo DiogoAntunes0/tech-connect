@@ -1,4 +1,5 @@
 package br.com.tech_connect.backend.Model;
+
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class Tecnico {
     private String sucesso;
     private String resposta;
     private Integer atendimentos;
+
+    @Column(nullable = false)
+    private Boolean premium = false;
 
     @ElementCollection
     @CollectionTable(name = "tecnico_skills", joinColumns = @JoinColumn(name = "tecnico_id"))
@@ -61,6 +65,8 @@ public class Tecnico {
     public void setIdade(Integer idade) { this.idade = idade; }
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
+    public Boolean getPremium() { return premium; }
+    public void setPremium(Boolean premium) { this.premium = premium != null ? premium : false; }
     public Double getRating() { return rating; }
     public void setRating(Double rating) { this.rating = rating; }
     public String getResposta() { return resposta; }

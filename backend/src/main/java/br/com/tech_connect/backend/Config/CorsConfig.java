@@ -26,18 +26,10 @@ public class CorsConfig {
         // Origens do front (dev: Live Server / prod: domínio real)
         config.setAllowedOrigins(allowedOrigins);
 
-        // Métodos usados pelo front:
-        // GET  → listar técnicos, carregar avaliações, histórico do chat
-        // POST → cadastro, login, enviar mensagem, avaliar, favoritar
-        // PUT  → atualizar perfil do usuário / técnico
-        // PATCH → atualizar foto
-        // DELETE → remover favorito, avaliação
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 
-        // Headers que o front envia em todas as requisições protegidas
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
 
-        // Necessário para o front ler headers da resposta (ex: Location no 201 Created)
         config.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

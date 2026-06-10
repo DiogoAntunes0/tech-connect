@@ -2,39 +2,40 @@
 <div id="perfilDrawer" class="fixed inset-0 bg-slate-950/60 hidden z-50">
   <div onclick="fecharPerfil()" class="absolute inset-0"></div>
 
-  <div id="drawerBox" class="absolute right-0 top-0 h-full w-full lg:w-[760px]
-bg-slate-50 shadow-2xl
-translate-x-full transition-transform duration-500
-overflow-y-auto">
+  <div id="drawerBox"
+       class="absolute right-0 top-0 h-full w-full lg:w-[760px]
+              bg-slate-50 shadow-2xl
+              translate-x-full transition-transform duration-500
+              overflow-y-auto">
 
     <div class="bg-gradient-to-br from-slate-950 via-indigo-950 to-violet-900 p-6 sm:p-8 text-white relative">
 
-      <button onclick="fecharPerfil()" aria-label="Fechar perfil" class="absolute top-5 right-5 bg-white/15 hover:bg-white/25
-px-4 py-2 rounded-xl transition">
+      <button onclick="fecharPerfil()" aria-label="Fechar perfil"
+              class="absolute top-5 right-5 bg-white/15 hover:bg-white/25 px-4 py-2 rounded-xl transition">
         X
       </button>
 
       <div class="flex flex-col sm:flex-row gap-6 sm:items-center pr-12">
-        <img id="perfilFoto" alt="Foto de perfil do técnico" class="w-28 h-28 rounded-2xl border-4 border-white/20 shadow-xl object-cover" />
+        <img id="perfilFoto" alt="Foto de perfil do técnico"
+             class="w-28 h-28 rounded-2xl border-4 border-white/20 shadow-xl object-cover" />
 
         <div class="flex-1">
           <p id="perfilArea" class="text-indigo-200 font-semibold"></p>
-          <h2 id="perfilNome" class="text-3xl sm:text-4xl font-bold mt-1"></h2>
+          <div class="flex flex-wrap items-center gap-3">
+            <h2 id="perfilNome" class="text-3xl sm:text-4xl font-bold mt-1"></h2>
+          </div>
           <p id="perfilCidade" class="text-slate-300 mt-2"></p>
 
           <div class="mt-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
             <span class="bg-white/15 px-4 py-3 rounded-xl text-sm">
               Avaliação<br><strong id="perfilRating" class="text-lg"></strong>
             </span>
-
             <span class="bg-white/15 px-4 py-3 rounded-xl text-sm">
               Valor/hora<br><strong class="text-lg">R$ <span id="perfilValor"></span></strong>
             </span>
-
             <span class="bg-white/15 px-4 py-3 rounded-xl text-sm">
               Idade<br><strong class="text-lg"><span id="perfilIdade"></span> anos</strong>
             </span>
-
             <span class="bg-white/15 px-4 py-3 rounded-xl text-sm">
               Projetos<br><strong id="perfilProjetosTotal" class="text-lg">0</strong>
             </span>
@@ -51,12 +52,10 @@ px-4 py-2 rounded-xl transition">
           <p id="perfilSucesso" class="text-2xl font-bold text-indigo-600">96%</p>
           <p class="text-xs text-slate-500">Taxa de sucesso</p>
         </div>
-
         <div class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-100">
           <p id="perfilResposta" class="text-2xl font-bold text-indigo-600">1h</p>
           <p class="text-xs text-slate-500">Tempo médio de resposta</p>
         </div>
-
         <div class="bg-white rounded-2xl p-5 text-center shadow-sm border border-slate-100">
           <p id="perfilAtendimentos" class="text-2xl font-bold text-indigo-600">42</p>
           <p class="text-xs text-slate-500">Atendimentos concluídos</p>
@@ -85,7 +84,6 @@ px-4 py-2 rounded-xl transition">
 
       <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
         <h3 class="font-bold text-xl text-slate-900 mb-4">Feedbacks de clientes</h3>
-
         <div class="grid sm:grid-cols-[120px_1fr] gap-3 mb-4">
           <select id="notaInput" class="border border-slate-200 rounded-xl px-4 py-3 w-full bg-white">
             <option value="5">5 estrelas</option>
@@ -94,26 +92,29 @@ px-4 py-2 rounded-xl transition">
             <option value="2">2 estrelas</option>
             <option value="1">1 estrela</option>
           </select>
-
           <textarea id="comentarioInput" placeholder="Escreva sua avaliação..."
             class="w-full border border-slate-200 rounded-xl p-4 min-h-24 outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
         </div>
-
-        <button id="btnAvaliar" class="w-full bg-indigo-600 hover:bg-indigo-700
-text-white py-3 rounded-xl font-semibold transition">
+        <button id="btnAvaliar"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl font-semibold transition">
           Enviar avaliação
         </button>
-
         <div id="listaAvaliacoes" class="mt-6 space-y-4"></div>
       </section>
 
-      <button id="btnChatPerfil" class="w-full bg-gradient-to-r from-indigo-600 to-violet-700
-hover:opacity-95
-text-white py-4 rounded-xl text-lg font-semibold shadow-xl transition">
+      <!-- Botão premium (só aparece para o próprio técnico logado sem premium) -->
+      <button id="btnPremiumDrawer"
+              class="hidden w-full bg-gradient-to-r from-amber-400 to-yellow-500 hover:opacity-90
+                     text-white py-4 rounded-xl text-lg font-bold shadow-xl transition flex items-center justify-center gap-2">
+        ★ Ativar destaque Premium — R$ 49/mês
+      </button>
+
+      <button id="btnChatPerfil"
+              class="w-full bg-gradient-to-r from-indigo-600 to-violet-700 hover:opacity-95
+                     text-white py-4 rounded-xl text-lg font-semibold shadow-xl transition">
         Entrar em contato
       </button>
 
     </div>
-
   </div>
 </div>

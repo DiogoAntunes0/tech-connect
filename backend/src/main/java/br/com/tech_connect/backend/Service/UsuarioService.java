@@ -23,10 +23,6 @@ public class UsuarioService {
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
 
-    // --- CADASTRO ---
-    // Recebe CadastroDTO { nome, email, senha }
-    // Valida se e-mail já existe antes de salvar
-    // Senha é criptografada com BCrypt antes de persistir
     @Transactional
     public UsuarioDto cadastrar(CadastroDto dto) {
         if (usuarioRepository.existsByEmail(dto.email())) {
@@ -41,10 +37,7 @@ public class UsuarioService {
         return toDTO(usuarioRepository.save(usuario));
     }
 
-    // --- LOGIN ---
-    // Busca usuário pelo e-mail, valida a senha com BCrypt
-    // Retorna token JWT que o front guarda no localStorage
-    // Lança RuntimeException se inválido → AuthController retorna 401
+
     public String autenticar(LoginDto dto) {
         Usuario usuario = usuarioRepository.findByEmail(dto.email())
                 .orElseThrow(() -> new RuntimeException("Credenciais inválidas"));
@@ -64,9 +57,6 @@ public class UsuarioService {
         return toDTO(usuario);
     }
 
-    // --- ATUALIZAR PERFIL ---
-    // Chamado por: UsuarioController.atualizar → salvarPerfilUsuario.onclick
-    // Atualiza: nome, email, bio, idade, valorHora, especialidades, projetos
     @Transactional
     public UsuarioDto atualizar(Long id, UsuarioDto dto) {
         Usuario usuario = usuarioRepository.findById(id)
