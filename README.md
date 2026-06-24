@@ -23,7 +23,6 @@ Plataforma SaaS para conectar clientes a técnicos especializados de forma diret
 ### 📋 Principais Funcionalidades
 
 * 🔍 **Filtros Avançados:** Busca por categorias de especialidades (Elétrica, TI, Hidráulica, etc.) e ranking de melhores avaliações.
-* 💰 **Gestão de Orçamentos:** Fluxo simplificado para solicitação, recebimento de propostas e acompanhamento de status.
 * 💎 **Modelo SaaS:** Sistema de monetização com Planos Premium para técnicos que buscam maior relevância na vitrine da plataforma.
 * 🔐 **Segurança:** Autenticação via JWT garantindo sessões seguras e distinção de permissões entre Clientes e Profissionais.
 * 📱 **Interface Web:** UI intuitiva desenvolvida com tecnologias nativas, garantindo performance e compatibilidade.
