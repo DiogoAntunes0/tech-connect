@@ -49,8 +49,6 @@ public class UsuarioService {
         return jwtService.gerarToken(usuario.getId(), usuario.getEmail());
     }
 
-    // --- BUSCAR POR ID ---
-    // Chamado por: UsuarioController.buscarPorId → btnMeuPerfil.onclick
     public UsuarioDto buscarPorId(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
@@ -73,10 +71,6 @@ public class UsuarioService {
         return toDTO(usuarioRepository.save(usuario));
     }
 
-    // --- ATUALIZAR FOTO ---
-    // Recebe base64 da imagem (inputFoto.onchange)
-    // Em produção: salvar em bucket S3/GCS e retornar URL pública
-    // Por ora: persiste o base64 diretamente no campo foto
     @Transactional
     public String atualizarFoto(Long id, String foto) {
         Usuario usuario = usuarioRepository.findById(id)
@@ -87,8 +81,6 @@ public class UsuarioService {
         return foto;
     }
 
-    // --- MAPPER ---
-    // Nunca retorna a senha para o front
     private UsuarioDto toDTO(Usuario u) {
         return new UsuarioDto(
                 u.getId(),

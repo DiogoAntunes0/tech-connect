@@ -20,12 +20,14 @@ public class Usuario {
     @Column(nullable = false)
     private String senha; // BCrypt
 
-    private String foto;          // URL ou Base64 (auth.js → inputFoto)
-    private Integer idade;        // perfil-usuario.html → editarIdade
-    private Double valorHora;     // perfil-usuario.html → editarValorHora
-    private String bio;           // perfil-usuario.html → editarBio
-    private String especialidades;// perfil-usuario.html → editarEspecialidades
-    private String projetos;      // perfil-usuario.html → editarProjetos
+    @Column(name = "foto", length = 1024)
+    private String foto;
+
+    private Integer idade;
+    private Double valorHora;
+    private String bio;
+    private String especialidades;
+    private String projetos;
 
     @Column(name = "criado_em")
     private LocalDateTime criadoEm = LocalDateTime.now();

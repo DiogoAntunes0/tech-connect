@@ -19,7 +19,6 @@ public class TecnicoService {
 
     private final TecnicoRepository tecnicoRepository;
 
-    // --- LISTAR TODOS ---
     public @Nullable List<TecnicoDto> listarTodos() {
         return tecnicoRepository.findAll()
                 .stream()
@@ -27,7 +26,6 @@ public class TecnicoService {
                 .toList();
     }
 
-    // --- BUSCAR POR TERMO ---
     public @Nullable List<TecnicoDto> buscarPorTermo(String termo) {
         if (termo == null || termo.isBlank()) {
             return listarTodos();
@@ -38,23 +36,18 @@ public class TecnicoService {
                 .toList();
     }
 
-    // --- BUSCAR POR ID ---
     public TecnicoDto buscarPorId(Long id) {
         Tecnico tecnico = tecnicoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Técnico não encontrado"));
         return toDTO(tecnico);
     }
 
-    // --- CADASTRAR ---
     @Transactional
     public TecnicoDto cadastrar(TecnicoDto dto) {
         Tecnico tecnico = toEntity(dto);
         return toDTO(tecnicoRepository.save(tecnico));
     }
 
-    // --- ATUALIZAR ---
-    // Inclui premium: ao receber premium=true via PUT /api/tecnicos/:id
-    // (disparado pelo modal de pagamento simulado no front), persiste o flag.
     @Transactional
     public TecnicoDto atualizar(Long id, TecnicoDto dto) {
         Tecnico tecnico = tecnicoRepository.findById(id)
@@ -71,7 +64,6 @@ public class TecnicoService {
         tecnico.setFoto(dto.foto());
         tecnico.setSkills(dto.skills());
 
-        // Só atualiza premium se vier explicitamente no payload
         if (dto.premium() != null) {
             tecnico.setPremium(dto.premium());
         }
@@ -79,7 +71,6 @@ public class TecnicoService {
         return toDTO(tecnicoRepository.save(tecnico));
     }
 
-    // --- ATUALIZAR RATING ---
     @Transactional
     public void atualizarRating(Long tecnicoId, Double novoRating) {
         Tecnico tecnico = tecnicoRepository.findById(tecnicoId)
@@ -88,7 +79,7 @@ public class TecnicoService {
         tecnicoRepository.save(tecnico);
     }
 
-    // --- DELETAR ---
+
     @Transactional
     public void deletar(Long id) {
         if (!tecnicoRepository.existsById(id)) {
