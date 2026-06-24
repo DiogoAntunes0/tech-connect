@@ -3,7 +3,6 @@ package br.com.tech_connect.backend.Controller;
 import br.com.tech_connect.backend.Dtos.TecnicoDto;
 
 import br.com.tech_connect.backend.Service.TecnicoService;
-import br.com.tech_connect.backend.Service.TecnicoService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
